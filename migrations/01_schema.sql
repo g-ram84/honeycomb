@@ -31,12 +31,14 @@ CREATE TABLE categories (
 
 CREATE TABLE favourites (
   id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
   favourite BOOLEAN
 );
 
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
   date_created DATE,
   comment VARCHAR(140)
@@ -44,6 +46,7 @@ CREATE TABLE comments (
 
 CREATE TABLE resource_ratings (
   id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
   rating VARCHAR(1)
 );
