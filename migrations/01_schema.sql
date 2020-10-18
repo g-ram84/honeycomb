@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
+  user_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   profile_picture_url VARCHAR(255),
   password VARCHAR(255) NOT NULL
