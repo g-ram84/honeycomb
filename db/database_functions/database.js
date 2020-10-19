@@ -4,10 +4,10 @@ const { Pool } = require('pg');
 const { query } = require('express');
 
 const pool = new Pool({
-  user: 'vagrant',
-  password: '123',
+  user: 'labber',
+  password: 'labber',
   host: 'localhost',
-  database: 'lightbnb'
+  database: 'midterm'
 });
 
 //LANDING PAGE FUNCTIONS
@@ -75,3 +75,27 @@ const addRating = function(resource_ratings) {
   .then(res => res.rows[0]);
 }
 exports.addRating = addRating;
+
+// Add new content
+const addResource = function(resources){
+  return pool.query(`
+  INSERT INTO resources (url, user_id, title, description, date_created, media_type)
+  VALUES ($1, $2, $3, $4, $5, $6)
+  RETURNING *
+  `, [resources.url, resources.user_id, resources.title, resources.description, resources.date_created, resources.media_type])
+  .then(res => res.rows[0]);
+}
+exports.addResource = addResource;
+
+// Update user info
+
+const updateUser = function(users) {
+  return pool.query(`
+  UPDATE users
+  SET user_name = $1, profile_picture_url = $2
+  WHERE users.id = $3
+  `, users)
+  .then(res => res.rows[0]);
+}
+
+exports.updateUser = updateUser;
