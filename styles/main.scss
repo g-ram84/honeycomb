@@ -21,6 +21,7 @@ body {
 clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 height: 315px ;
 width: 90%height;
+border: 3px solid  black;
 }
 
 .logo-text {
@@ -29,4 +30,16 @@ width: 90%height;
 
 .card{
   width: 300;
+  border-radius: 10px;
+
+}
+
+#like-icon {
+  height: 10px;
+  width: 10px;
+}
+
+#star-icon {
+  height: 15px;
+  width: 15px;
 }
