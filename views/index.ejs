@@ -22,12 +22,12 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-3">
+        <div class="col-2">
           <%- include('../partials/_header') %>
         </div>
-        <div class="col-9 scroll-view">
-          <div class="row">
-            <div class="card hexagon" style="width: 18rem;">
+        <div class="col-9 scroll-view ">
+          <div class="row justify-content-center">
+            <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
               <iframe
                 class="embed-responsive-item"
                 class="card-img-top"
@@ -36,12 +36,15 @@
               </iframe>
               <div class="card-body">
                 <h5 class="card-title">Title from database here</h5>
-                <p class="card-text">No text here </p>
-                <a href="#" class="btn btn-primary">This button to ind res page</a>
+                <a href="#" class="btn btn-primary">comment</a>
+              </div>
+              <div class="card-footer">
+                <img src="/documents/like.svg">
+                <small class="text-center">/5</small>
               </div>
             </div>
 
-            <div class="card hexagon" style="width: 18rem;">
+            <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
               <img src="/documents/honeycomb.svg" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Card title from db</h5>
@@ -53,10 +56,9 @@
               </div>
             </div>
 
-            <div class="card hexagon">
+            <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
               <div class="card-body">
                 <h4 class="card-title">Title from DB</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                 <p class="card-text">
                   Description from DB
                 </p>
