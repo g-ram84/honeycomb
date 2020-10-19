@@ -1,8 +1,22 @@
+
 @import "header";
 @import "nav";
 @import "layout";
 
 body {
-  background-color: white;
-  
+  background-color: orange;
+}
+.pa-0{
+  padding: 0;
+}
+
+
+
+
+.scroll-view {
+  overflow: scroll;
+  height: 100vh;
+}
+.hexagon {
+clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }

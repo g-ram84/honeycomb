@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> ARE THESE NEEDED WITH BOOTSTRAP-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 <!-- link to main.css -->
 
     <!-- <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script> -->
@@ -21,24 +22,179 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-3 bg-select">
-          <img src="/documents/honeycomb.svg">
-          <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. At placeat sit corporis quis culpa fugit. Culpa, blanditiis. Numquam perspiciatis voluptatibus modi explicabo labore eum eius iure ea praesentium vero? Fugiat.Lorem ipsum dolor sit amet consectetur adipisicing elit. At placeat sit corporis quis culpa fugit. Culpa, blanditiis. Numquam perspiciatis voluptatibus modi explicabo labore eum eius iure ea praesentium vero? Fugiat.Lorem ipsum dolor sit amet consectetur adipisicing elit. At placeat sit corporis quis culpa fugit. Culpa, blanditiis. Numquam perspiciatis voluptatibus modi explicabo labore eum eius iure ea praesentium vero? Fugiat.
-          </p>
+        <div class="col-3">
+          <%- include('../partials/_header') %>
         </div>
-        <div class="col-9">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, aliquam. Fugit dolorum rem alias rerum soluta porro inventore labore quis perspiciatis fugiat, accusamus harum odio aliquid, doloribus consectetur impedit deserunt?
-          Unde, accusantium aperiam, mollitia sit nihil veritatis voluptas obcaecati modi excepturi dignissimos quaerat perferendis odit eveniet quia commodi aspernatur fuga doloribus voluptate deserunt distinctio temporibus ut ea amet at. Facilis?
-          Reiciendis, minus architecto sint nisi iusto in magnam voluptatibus ab consectetur dolores id hic quos accusamus. Non temporibus porro eaque vitae corrupti magni maxime doloribus, repellendus ducimus corporis nobis dicta?
-          Voluptatibus expedita a dolor. Sit necessitatibus iure repellendus deleniti nesciunt nemo et laboriosam voluptates porro accusantium laudantium, sint fuga suscipit voluptatibus assumenda praesentium voluptatum aspernatur dolorum, architecto ipsum veritatis? Eaque.
-          Natus, quod quas? Fugit ipsa, molestias aspernatur commodi qui nam. Mollitia, vero. Vel, assumenda perspiciatis exercitationem quis laudantium eum. Id, fugit eaque neque sapiente impedit maxime saepe hic dolores nam!
-          Culpa harum eum reiciendis adipisci excepturi, quam quia temporibus veritatis, neque fugiat magni rem ad soluta, expedita tempora recusandae error. Beatae adipisci blanditiis repellendus quae facilis, iste voluptatibus temporibus corporis.
-          Modi tempore praesentium ab id ipsum soluta sint inventore deleniti expedita. Quibusdam ipsam dolorem quia nesciunt? Alias commodi corporis nihil. Recusandae distinctio eaque omnis impedit dignissimos repellat nemo libero? Nisi.
-          Nemo perspiciatis, cupiditate rerum possimus corrupti voluptas assumenda ea doloribus asperiores eum, iste fuga laborum, qui illum autem architecto! Cumque asperiores fuga reiciendis modi maiores nisi magni incidunt enim eaque.
-          Debitis quo vel corporis iste voluptatem ea consectetur cum recusandae? Fugit, accusamus ipsum rem soluta quam at natus minima iusto veniam incidunt provident. Error obcaecati delectus rem, dolore ipsa maiores.
-          Deleniti porro nemo ad numquam molestiae sapiente cum consequuntur mollitia, inventore alias, rerum laudantium nostrum tenetur, consectetur culpa expedita. Expedita in nemo sequi numquam tenetur voluptate id omnis error esse.</p>
-        </div>
+        <div class="col-9 scroll-view">
+          <div class="row">
+            <div class="card hexagon" style="width: 18rem;">
+              <iframe
+                class="embed-responsive-item"
+                class="card-img-top"
+                src="https://www.youtube.com/embed/qN3OueBm9F4"
+                allowfullscreen>
+              </iframe>
+              <div class="card-body">
+                <h5 class="card-title">Title from database here</h5>
+                <p class="card-text">No text here </p>
+                <a href="#" class="btn btn-primary">This button to ind res page</a>
+              </div>
+            </div>
 
+            <div class="card hexagon" style="width: 18rem;">
+              <img src="/documents/honeycomb.svg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title from db</h5>
+                <p class="card-text">description from db</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted ">need access to db for time</small>
+              </div>
+            </div>
+
+            <div class="card hexagon">
+              <div class="card-body">
+                <h4 class="card-title">Title from DB</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">
+                  Description from DB
+                </p>
+                <a href="#!" class="card-link">Link to ind res page</a>
+                <a href="#!" class="card-link">Link to actual url?</a>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="row">
+            <div class="card hexagon" style="width: 18rem;">
+              <iframe
+                class="embed-responsive-item"
+                class="card-img-top"
+                src="https://www.youtube.com/embed/qN3OueBm9F4"
+                allowfullscreen>
+              </iframe>
+              <div class="card-body">
+                <h5 class="card-title">Title from database here</h5>
+                <p class="card-text">No text here </p>
+                <a href="#" class="btn btn-primary">This button to ind res page</a>
+              </div>
+            </div>
+
+            <div class="card hexagon" style="width: 18rem;">
+              <img src="/documents/honeycomb.svg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title from db</h5>
+                <p class="card-text">description from db</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted ">need access to db for time</small>
+              </div>
+            </div>
+
+            <div class="card hexagon">
+              <div class="card-body">
+                <h4 class="card-title">Title from DB</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">
+                  Description from DB
+                </p>
+                <a href="#!" class="card-link">Link to ind res page</a>
+                <a href="#!" class="card-link">Link to actual url?</a>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="row">
+            <div class="card" style="width: 18rem;">
+              <iframe
+                class="embed-responsive-item"
+                class="card-img-top"
+                src="https://www.youtube.com/embed/qN3OueBm9F4"
+                allowfullscreen>
+              </iframe>
+              <div class="card-body">
+                <h5 class="card-title">Title from database here</h5>
+                <p class="card-text">No text here </p>
+                <a href="#" class="btn btn-primary">This button to ind res page</a>
+              </div>
+            </div>
+
+            <div class="card" style="width: 18rem;">
+              <img src="/documents/honeycomb.svg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title from db</h5>
+                <p class="card-text">description from db</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted ">need access to db for time</small>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Title from DB</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">
+                  Description from DB
+                </p>
+                <a href="#!" class="card-link">Link to ind res page</a>
+                <a href="#!" class="card-link">Link to actual url?</a>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="row">
+            <div class="card" style="width: 18rem;">
+              <iframe
+                class="embed-responsive-item"
+                class="card-img-top"
+                src="https://www.youtube.com/embed/qN3OueBm9F4"
+                allowfullscreen>
+              </iframe>
+              <div class="card-body">
+                <h5 class="card-title">Title from database here</h5>
+                <p class="card-text">No text here </p>
+                <a href="#" class="btn btn-primary">This button to ind res page</a>
+              </div>
+            </div>
+
+            <div class="card" style="width: 18rem;">
+              <img src="/documents/honeycomb.svg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title from db</h5>
+                <p class="card-text">description from db</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted ">need access to db for time</small>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Title from DB</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">
+                  Description from DB
+                </p>
+                <a href="#!" class="card-link">Link to ind res page</a>
+                <a href="#!" class="card-link">Link to actual url?</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
