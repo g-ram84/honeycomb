@@ -43,33 +43,35 @@ exports.contentView = contentView;
 
 //Create a function that allows the user to add a favourite
 
-const addFavourite = function(user, resource) {
+const addFavourite = function(favourites) {
   return pool.query(`
-  UPDATE favourites
-  SET favourite = TRUE
-  FROM resources
-  INNER JOIN users ON users.id = resources.user_id
-  WHERE users.id = $1 AND resources.id = $2
-`, user, resource)
+  INSERT INTO favourites (user_id, resource_id, favourite)
+  VALUES ($1, $2, TRUE)
+  RETURNING *
+`, [favourites.user_id, favourites.resource_id, favourites.favourite])
   .then(res => res.rows[0]);
 }
 exports.addFavourite = addFavourite;
 
-//Add comment to database
+//Add comment to resource
 
-const addComment = function(comment, resource, user) {
+const addComment = function(comments) {
   return pool.query(`
-  INSERT INTO comments
-  SET comment = $1
-  WHERE users.id = $3 AND resources.id = $2
-  `, comment, resource, user)
+  INSERT INTO comments (comment, resource_id, user_id)
+  VALUES ($1, $2, $3)
+  RETURNING *
+  `, [comments.comment, comments.resource_id, comments.user_id])
   .then(res => res.rows[0]);
 }
 exports.addComment = addComment;
 
-
-// UPDATE favourites
-// SET favourite = TRUE
-// JOIN resources ON resources.id = favourites.resource_id
-// JOIN users ON users.id = favourites.user_id
-// WHERE users.id = '1' AND resources.id = '1'
+// Add rating to resource
+const addRating = function(resource_ratings) {
+  return pool.query(`
+  INSERT INTO resource_ratings (rating, resource_id, user_id)
+  VALUES ($1, $2, $3)
+  RETURNING *
+  `,[resource_ratings.rating, resource_ratings.resource_id, resource_ratings.user_id])
+  .then(res => res.rows[0]);
+}
+exports.addRating = addRating;
