@@ -19,6 +19,7 @@ CREATE TABLE resources (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   title VARCHAR(255),
   description TEXT,
+  date_created DATE,
   media_type VARCHAR(10)
 );
 
