@@ -13,37 +13,37 @@ const pool = new Pool({
 });
 // /// Users
 
-// /**
-//  * Get a single user from the database given their email.
-//  * @param {String} email The email of the user.
-//  * @return {Promise<{}>} A promise to the user.
-//  */
-// const getUserWithEmail = function (email) {
-//   return pool.query(`SELECT *
-//  FROM users
-//  WHERE users.email = $1;`,
-//     [email])
-//     .then(res =>
-//       res.rows[0]);
-// };
+/**
+ * Get a single user from the database given their email.
+ * @param {String} email The email of the user.
+ * @return {Promise<{}>} A promise to the user.
+ */
+const getUserWithEmail = function (email) {
+  return pool.query(`SELECT *
+ FROM users
+ WHERE users.email = $1;`,
+    [email])
+    .then(res =>
+      res.rows[0]);
+};
 
-// exports.getUserWithEmail = getUserWithEmail;
+exports.getUserWithEmail = getUserWithEmail;
 
-// /**
-//  * Get a single user from the database given their id.
-//  * @param {string} id The id of the user.
-//  * @return {Promise<{}>} A promise to the user.
-//  */
-// const getUserWithId = function (id) {
-//   return pool.query(`SELECT *
-//     FROM users
-//     WHERE users.id = $1;`,
-//     [id])
-//     .then(res =>
-//       res.rows[0]);
-// };
+/**
+ * Get a single user from the database given their id.
+ * @param {string} id The id of the user.
+ * @return {Promise<{}>} A promise to the user.
+ */
+const getUserWithId = function (id) {
+  return pool.query(`SELECT *
+    FROM users
+    WHERE users.id = $1;`,
+    [id])
+    .then(res =>
+      res.rows[0]);
+};
 
-// exports.getUserWithId = getUserWithId;
+exports.getUserWithId = getUserWithId;
 
 
 // /**

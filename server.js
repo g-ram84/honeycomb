@@ -58,29 +58,7 @@ app.use("/api/resources", resourcesRoutes(db));
 // Separate them into separate routes files (see above).
 
 
-/***********USER GET ROUTES ************/
-app.get("/", (req, res) => {// include condition if logged in
-  const templateVars = {
-    userId: req.session["userId"],
-    password: req.session["userId.password"]
-  }; res.render("index", templateVars); // Home Page
-});
 
-app.get('/register', (req, res) => {
-  const templateVars = {
-    userId: req.session["userId"],
-    password: req.session["userId.password"]
-  };
-  res.render('register.ejs', templateVars);
-});
-
-app.get("/login", (req, res) => {
-  const templateVars = {
-    userId: req.session["userId"],
-    password: req.session["userId.password"]
-  };
-  res.render("login.ejs", templateVars);
-});
 
 
 
@@ -91,28 +69,6 @@ app.get("/", (req, res) => { //backend request
   res.render("/index"); //name of ejs i want to render
 });
 
-app.get("/resources/new", (req, res) => { //backend request
-  const userId = req.session['userId']; //Figure out userId
-  if (userDatabase[userId]) {
-    const templateVars = {
-      userId
-    };
-    res.render("resources_new", templateVars);
-  } else {
-    res.redirect('/login');
-  }
-  res.render("new_content.ejs"); //name of ejs i want to render
-});
-//***** YOUR CREATED resource PAGE *****
-app.get("/ind_view", (req, res) => {
-  let { resource } = req.params;
-  const templateVars = {
-    userId: req.session["userId"],
-    resource: resource,
-  };
-  res.render("ind_view.ejs", templateVars);
-});
-
 
 //*****POST LOGOUT*****
 app.post('/logout', (req, res) => {
@@ -121,67 +77,13 @@ app.post('/logout', (req, res) => {
 });
 
 
-/***********USER POST ROUTES ************/
-  // Create a new user
-  app.post('/register', (req, res) => {
-    const user = req.body;
-    user.password = bcrypt.hashSync(user.password, 12);
-    database.addUser(user) ///helperFunction in dbhelperqueries
-    .then(user => {
-      if (!user) {
-        res.send({error: "error"});
-        return;
-      }
-      req.session.userId = user.id;
-      res.send("🤗");
-    })
-    .catch(err => res.send(err));
-  });
 
 
-const login =  function(email, password) {
-  return database.getUserWithEmail(email) ///helper function needed
-  .then(user => {
-    if (bcrypt.compareSync(password, user.password)) {
-      return user;
-    }
-    return null;
-  });
-}
-// exports.login = login; // user this when transfer to users.js
 
-app.post('/login', (req, res) => {
-  const {email, password} = req.body;
-  login(email, password)
-    .then(user => {
-      if (!user) {
-        res.send({error: "error"});
-        return;
-      }
-      req.session.userId = user.id;
-      res.send({user: {name: user.name, email: user.email, id: user.id}});
-    })
-    .catch(err => res.send(err));
-});
 
-// when click on myResources
-app.get("/", (req, res) => {
-  const userId = req.session['userId'];
-  if (!userId) {
-    res.send({message: "not logged in"});
-    return;
-  }
-  database.getUserWithId(userId) // fetch with dbhelperqueries
-    .then(user => {
-      if (!user) {
-        res.send({error: "no user with that id"});
-        return;
-      }
 
-      res.send({user: {name: user.name, email: user.email, id: userId}});
-    })
-    .catch(err => res.send(err));
-});
+
+
 
 
 

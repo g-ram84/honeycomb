@@ -13,4 +13,4 @@ $(() => {
   });;
 });
 
-//use ajax for front end when you dont want to reload
+//use ajax for front end when you dont want to reload page without refreshing like through a button
