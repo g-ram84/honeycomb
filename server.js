@@ -87,8 +87,8 @@ app.get("/login", (req, res) => {
 /***********RESOURCE GET ROUTES ************/
 
 
-app.get("/myResources/", (req, res) => { //backend request
-  res.render("myResources.ejs"); //name of ejs i want to render
+app.get("/", (req, res) => { //backend request
+  res.render("/index"); //name of ejs i want to render
 });
 
 app.get("/resources/new", (req, res) => { //backend request
@@ -101,16 +101,16 @@ app.get("/resources/new", (req, res) => { //backend request
   } else {
     res.redirect('/login');
   }
-  res.render("resources_new.ejs"); //name of ejs i want to render
+  res.render("new_content.ejs"); //name of ejs i want to render
 });
 //***** YOUR CREATED resource PAGE *****
-app.get("/myResources/:resource", (req, res) => {
+app.get("/ind_view", (req, res) => {
   let { resource } = req.params;
   const templateVars = {
     userId: req.session["userId"],
     resource: resource,
   };
-  res.render("created_resource.ejs", templateVars);
+  res.render("ind_view.ejs", templateVars);
 });
 
 
@@ -165,8 +165,8 @@ app.post('/login', (req, res) => {
 });
 
 // when click on myResources
-app.get("/myResources", (req, res) => {
-  const userId = req.session.userId;
+app.get("/", (req, res) => {
+  const userId = req.session['userId'];
   if (!userId) {
     res.send({message: "not logged in"});
     return;

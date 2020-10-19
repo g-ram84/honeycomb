@@ -51,17 +51,17 @@ const pool = new Pool({
 //  * @param {{name: string, password: string, email: string}} user
 //  * @return {Promise<{}>} A promise to the user.
 //  */
-// const addUser = function (user) {
-//   return pool.query(`
-//   INSERT INTO users (name, email, password)
-//   VALUES ($1, $2, $3)
-//   RETURNING *`,
-//     [user.name, user.email, user.password])
-//     .then(res =>
-//       res.rows);
-// };
+const addUser = function (user) {
+  return pool.query(`
+  INSERT INTO users (name, email, password)
+  VALUES ($1, $2, $3)
+  RETURNING *`,
+    [user.name, user.email, user.password])
+    .then(res =>
+      res.rows);
+};
 
-// exports.addUser = addUser;
+exports.addUser = addUser;
 
 // /// Reservations
 
