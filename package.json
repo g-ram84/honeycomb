@@ -14,13 +14,19 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "chalk": "^2.4.2",
+    "dot-prop": "^6.0.0",
     "dotenv": "^2.0.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
+    "kind-of": "^6.0.3",
+    "lodash": "^4.17.20",
+    "minimist": "^1.2.5",
     "morgan": "^1.9.1",
+    "node-sass": "^4.14.1",
     "node-sass-middleware": "^0.11.0",
     "pg": "^6.4.2",
-    "pg-native": "^3.0.0"
+    "pg-native": "^3.0.0",
+    "yargs-parser": "^20.2.3"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
