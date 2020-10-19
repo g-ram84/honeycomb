@@ -34,16 +34,42 @@ const contentView = function(id) {
   FROM resources
   JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
   JOIN comments ON comments.resource_id = resources.id
-  WHERE resources.id = 1
+  WHERE resources.id = $1
   GROUP BY resources.url, resources.id, comments.comment
  `, id)
-  .then(res => res.rows[0]);
+  .then(res => res.rows);
 }
 exports.contentView = contentView;
 
- // SELECT url, resources.id, title, AVG(resource_ratings.rating) as average_rating, comments.comment, resources.date_created
-  // FROM resources
-  // JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
-  // JOIN comments ON comments.user_id = resources.id
-  // WHERE resources.id = 1
-  // GROUP BY resources.url, resources.id, comments.comment
+//Create a function that allows the user to add a favourite
+
+const addFavourite = function(user, resource) {
+  return pool.query(`
+  UPDATE favourites
+  SET favourite = TRUE
+  FROM resources
+  INNER JOIN users ON users.id = resources.user_id
+  WHERE users.id = $1 AND resources.id = $2
+`, user, resource)
+  .then(res => res.rows[0]);
+}
+exports.addFavourite = addFavourite;
+
+//Add comment to database
+
+const addComment = function(comment, resource, user) {
+  return pool.query(`
+  INSERT INTO comments
+  SET comment = $1
+  WHERE users.id = $3 AND resources.id = $2
+  `, comment, resource, user)
+  .then(res => res.rows[0]);
+}
+exports.addComment = addComment;
+
+
+// UPDATE favourites
+// SET favourite = TRUE
+// JOIN resources ON resources.id = favourites.resource_id
+// JOIN users ON users.id = favourites.user_id
+// WHERE users.id = '1' AND resources.id = '1'
