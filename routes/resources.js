@@ -27,9 +27,9 @@ module.exports = (db) => {
   });
 
 
-  router.get("/resources/new", (req, res) => { //backend request
+  router.get("/new_content", (req, res) => { //backend request
     const userId = req.session['userId']; //Figure out userId
-    if (userDatabase[userId]) {
+    if (userDatabase[userId]) { //query here
       //contentView(userId)
 
       const templateVars = {

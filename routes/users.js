@@ -4,6 +4,7 @@
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
+
 const { getUserWithEmail, addUser } = require('./dbhelperqueries');
 const {getUser,getAllContent,contentView,addFavourite,addComment,addRating,addResource,updateUser} = require('../db/database_functions/database')
 const express = require('express');
@@ -25,10 +26,8 @@ module.exports = (db) => {
   });
   /***********USER GET ROUTES ************/
   router.get("/", (req, res) => {// include condition if logged in
-    const templateVars = {
-      userId: req.session["userId"],
-      password: req.session["userId.password"]
-    }; res.render("index", templateVars); // Home Page
+res.render("index");
+      // Home Page
   });
 
   router.get('/register', (req, res) => {
