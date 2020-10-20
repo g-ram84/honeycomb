@@ -1,4 +1,3 @@
-// //JUST copy paste from LightBnB right now
 
 
 // const properties = require('./json/properties.json');
@@ -46,11 +45,11 @@ const getUserWithId = function (email) {
 exports.getUserWithId = getUserWithId;
 
 
-// /**
-//  * Add a new user to the database.
-//  * @param {{name: string, password: string, email: string}} user
-//  * @return {Promise<{}>} A promise to the user.
-//  */
+/**
+ * Add a new user to the database.
+ * @param {{name: string, password: string, email: string}} user
+ * @return {Promise<{}>} A promise to the user.
+ */
 const addUser = function (user) {
   return pool.query(`
   INSERT INTO users (name, email, password)
