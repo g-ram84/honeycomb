@@ -40,6 +40,18 @@ module.exports = (db) => {
   });
 
 
+  router.post('/', (req, res) => {
+    const userId = req.session.userId;
+    addResource({...req.body, owner_id: userId})
+      .then(resource => {
+        res.send(resource);
+      })
+      .catch(err => {
+        console.error(err);
+        res.send(err)
+      });
+  });
+
 //***** YOUR CREATED resource PAGE *****
 router.get("/ind_view", (req, res) => {
   let { resource } = req.params;

@@ -34,11 +34,11 @@ exports.getUserWithEmail = getUserWithEmail;
  * @param {string} id The id of the user.
  * @return {Promise<{}>} A promise to the user.
  */
-const getUserWithId = function (id) {
+const getUserWithId = function (email) {
   return pool.query(`SELECT *
     FROM users
-    WHERE users.id = $1;`,
-    [id])
+    WHERE users.email = $1;`,
+    [email])
     .then(res =>
       res.rows[0]);
 };
