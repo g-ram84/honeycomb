@@ -4,10 +4,11 @@
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-
+const {getUserWithEmail} = require('./dbhelperqueries')
 const express = require('express');
 const router  = express.Router();
 
+const bcrypt = require('bcrypt')
 module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
@@ -16,6 +17,7 @@ module.exports = (db) => {
         res.json({ users });
       })
       .catch(err => {
+        console.log("is error here")
         res
           .status(500)
           .json({ error: err.message });
@@ -46,7 +48,7 @@ router.get("/login", (req, res) => {
 });
 
   const login =  function(email, password) {
-    return database.getUserWithEmail(email) ///helper function needed
+    return getUserWithEmail(email) ///helper function needed
     .then(user => {
       if (bcrypt.compareSync(password, user.password)) {
         return user;
@@ -57,24 +59,35 @@ router.get("/login", (req, res) => {
 // exports.login = login; // user this when transfer to users.js
 
 router.post('/login', (req, res) => {
-  const {email, password} = req.body;
-  login(email, password)
+  // const {email, password} = req.body;
+  const user = req.body;
+  const email = req.body.email
+  const password = req.body.password
+console.log("user>>>>>>",user)
+
+  login(user)
     .then(user => {
-      if (!user) {
+      console.log("user>>>>>>>>",user)
+      if (!email) {
         res.send({error: "error"});
         return;
       }
       req.session.userId = user.id;
-      res.send({user: {name: user.name, email: user.email, id: user.id}});
+      // res.send({user: {name: user.name, email: user.email, id: user.id}});
     })
-    .catch(err => res.send(err));
+    .catch((err) => {
+
+      console.log("error>>>>>>>",err)
+      res.redirect("/login")
+
+      res.send(err)});
 });
 /***********USER POST ROUTES ************/
   // Create a new user
   router.post('/register', (req, res) => {
     const user = req.body;
     user.password = bcrypt.hashSync(user.password, 12);
-    database.addUser(user) ///helperFunction in dbhelperqueries
+    db.addUser(user) ///helperFunction in dbhelperqueries
     .then(user => {
       if (!user) {
         res.send({error: "error"});
@@ -91,7 +104,7 @@ router.post('/login', (req, res) => {
       res.send({message: "not logged in"});
       return;
     }
-    database.getUserWithId(userId) // fetch with dbhelperqueries
+    db.getUserWithId(userId) // fetch with dbhelperqueries
       .then(user => {
         if (!user) {
           res.send({error: "no user with that id"});
