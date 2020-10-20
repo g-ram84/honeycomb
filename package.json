@@ -14,16 +14,8 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "chalk": "^2.4.2",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "cookie-session": "^1.4.0",
-=======
     "dot-prop": "^6.0.0",
->>>>>>> f084d3a6c1403bdacd7d6ffe238a0f613b9908f3
-=======
-    "cookie-session": "^1.4.0",
->>>>>>> 9397d6a61a4095e19838b4398796311b539e1558
-    "dotenv": "^2.0.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "kind-of": "^6.0.3",

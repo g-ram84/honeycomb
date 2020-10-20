@@ -1,5 +1,3 @@
-const properties = require('./json/properties.json');
-const users = require('./json/users.json');
 const { Pool } = require('pg');
 const { query } = require('express');
 
@@ -10,32 +8,18 @@ const pool = new Pool({
   database: 'midterm'
 });
 
-<<<<<<< HEAD
 // LOGIN PAGE FUNCTIONS
 
 // Look up user
 
 const getUser = function(user) {
-=======
-// Get user
-
-const getUser = function(users) {
->>>>>>> sql_functions
   return pool.query(`
   SELECT *
   FROM users
   WHERE email = $1
-<<<<<<< HEAD
   `, user)
   .then(res => res.rows[0]);
 }
-=======
-  `, users)
-  .then(res => res.rows[0]);
-}
-exports.getUser = getUser;
-
->>>>>>> sql_functions
 
 //LANDING PAGE FUNCTIONS
 

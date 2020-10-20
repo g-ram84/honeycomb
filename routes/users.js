@@ -5,10 +5,11 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 const { getUserWithEmail, addUser } = require('./dbhelperqueries');
+const {getUser,getAllContent,contentView,addFavourite,addComment,addRating,addResource,updateUser} = require('../db/database_functions/database')
 const express = require('express');
 const router = express.Router();
-
 const bcrypt = require('bcrypt');
+
 module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
@@ -17,7 +18,6 @@ module.exports = (db) => {
         res.json({ users });
       })
       .catch(err => {
-        console.log("is error here");
         res
           .status(500)
           .json({ error: err.message });
@@ -47,10 +47,13 @@ module.exports = (db) => {
     res.render("login.ejs", templateVars);
   });
 
-  const login = function (user) {
+  const login = function (email, password) {
 
-    return getUserWithEmail(user.email) ///helper function needed
+    return getUserWithEmail(email) ///helper function needed
       .then(user => {
+        console.log("password>>>>>",password)
+        console.log("user.password>>>>>",user.password)
+
         if (bcrypt.compareSync(password, user.password)) {
           return user;
         }
@@ -60,15 +63,12 @@ module.exports = (db) => {
   // exports.login = login; // user this when transfer to users.js
 
   router.post('/login', (req, res) => {
-    // const {email, password} = req.body; // what am i doing here!!
-    const user = req.body;
-    const email = req.body.email;
-    const password = req.body.password;
-    console.log("user>>>>>>", user);
+    const {email, password} = req.body;
 
-    login(user)
+
+    login(email, password)
       .then(user => {
-        console.log("user>>>>>>>>", user);
+        console.log("userinloginpromise", user);
         if (!email) {
           res.send({ error: "error" });
           return;
@@ -78,7 +78,7 @@ module.exports = (db) => {
       })
       .catch((err) => {
 
-        console.log("error>>>>>>>", err);
+        console.log("errorlogin", err);
         res.redirect("/login");
 
         res.send(err);
