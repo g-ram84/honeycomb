@@ -10,7 +10,13 @@ const pool = new Pool({
   database: 'midterm'
 });
 
+<<<<<<< HEAD
 // LOGIN PAGE FUNCTIONS
+=======
+
+
+// Get user
+>>>>>>> sql_functions
 
 // Look up user
 
@@ -23,8 +29,19 @@ const getUser = function(user) {
   .then(res => res.rows[0]);
 }
 
+
 //LANDING PAGE FUNCTIONS
 
+const getCategories = function(categories) {
+  return pool.query(`
+  SELECT resources.title, resources.url, resources.description, category
+  FROM categories
+  JOIN resources ON resources.id = resource_id
+  WHERE category = $1
+  `, categories)
+  .then()
+}
+exports.getCategories = getCategories;
 //Create a function that displays content along with user_name, date_created, title, description, url
 
 const getAllContent = function() {
