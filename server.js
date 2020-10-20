@@ -58,6 +58,7 @@ app.use("/api/resources", resourcesRoutes(db));
 // Separate them into separate routes files (see above).
 
 
+<<<<<<< HEAD
 /***********USER GET ROUTES ************/
 app.get("/", (req, res) => {// include condition if logged in
   const templateVars = {
@@ -182,6 +183,34 @@ app.get("/myResources", (req, res) => {
     })
     .catch(err => res.send(err));
 });
+=======
+
+
+
+
+/***********RESOURCE GET ROUTES ************/
+
+
+app.get("/", (req, res) => { //backend request
+  res.render("/index"); //name of ejs i want to render
+});
+
+
+//*****POST LOGOUT*****
+app.post('/logout', (req, res) => {
+  req.session = null;
+  res.redirect('/');
+});
+
+
+
+
+
+
+
+
+
+>>>>>>> 9397d6a61a4095e19838b4398796311b539e1558
 
 
 
