@@ -1,6 +1,10 @@
 
 <!-- video card -->
-
+${
+  if resources.media_type = ${video} load resource into video container
+  if resources.media_type = ${image} load resource into image container
+  if resources.media_type = ${article} resource into ${article} container
+}
 
   <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
     <iframe
