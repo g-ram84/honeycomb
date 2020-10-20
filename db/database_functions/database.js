@@ -10,6 +10,19 @@ const pool = new Pool({
   database: 'midterm'
 });
 
+// LOGIN PAGE FUNCTIONS
+
+// Look up user
+
+const getUser = function(user) {
+  return pool.query(`
+  SELECT *
+  FROM users
+  WHERE email = $1
+  `, user)
+  .then(res => res.rows[0]);
+}
+
 //LANDING PAGE FUNCTIONS
 
 //Create a function that displays content along with user_name, date_created, title, description, url
@@ -76,6 +89,8 @@ const addRating = function(resource_ratings) {
 }
 exports.addRating = addRating;
 
+// NEW CONTENT PAGE
+
 // Add new content
 const addResource = function(resources){
   return pool.query(`
@@ -86,6 +101,8 @@ const addResource = function(resources){
   .then(res => res.rows[0]);
 }
 exports.addResource = addResource;
+
+// EDIT USER PAGE
 
 // Update user info
 
