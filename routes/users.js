@@ -133,3 +133,23 @@ module.exports = (db) => {
 
   return router;
 };
+
+
+// app.get("/register", (req, res) => {
+//   if (req.session.id) {
+//     res.redirect("/");
+//   } else {
+//     const templateVars = { username: req.session.id, user:null };
+//     res.render("register", templateVars);
+//   }
+// });
+
+
+
+
+
+
+
+
+
+
