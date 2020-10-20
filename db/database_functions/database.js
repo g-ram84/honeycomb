@@ -128,3 +128,25 @@ const updateUser = function(users) {
 }
 
 exports.updateUser = updateUser;
+
+// Search function
+
+const searchResources = function(search) {
+  const queryParams = [];
+  let queryString = `
+  SELECT url, resources.id, title, AVG(resource_ratings.rating) as average_rating, comments.comment, resources.date_created
+  FROM resources
+  JOIN resource_ratings ON resource_ratings.resource_id = resource_id
+  WHERE 1=1
+  `;
+  if(search.description) {
+    queryParams.push(`%${resources.description}%`);
+    queryString += `AND description LIKE $${queryParams.length} `;
+  }
+  queryString += `
+  ORDER BY resources.date_created
+  `;
+  return pool.query(queryString, queryParams)
+  .then(res => res.rows);
+};
+  exports.searchResources = searchResources;
