@@ -5,15 +5,6 @@
 // require('dotenv').config();
 
 // Web server config
-<<<<<<< HEAD
-const PORT       = process.env.PORT || 8080;
-// const ENV        = process.env.ENV || "development";
-const express    = require("express");
-const bodyParser = require("body-parser");
-const sass       = require("node-sass-middleware");
-const app        = express();
-// const morgan     = require('morgan');
-=======
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
@@ -22,7 +13,7 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
->>>>>>> c0415034b7ed81610eafbe825b184a64ee35e1ab
+
 
 // PG database client/connection setup
 // const { Pool } = require('pg');
@@ -58,14 +49,9 @@ const resourcesRoutes = require("./routes/resources");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-<<<<<<< HEAD
-// app.use("/api/users", usersRoutes(db));
-// app.use("/api/widgets", widgetsRoutes(db));
-=======
 app.use("/api/users", usersRoutes(db));
 app.use("/api/resources", resourcesRoutes(db));
 
->>>>>>> c0415034b7ed81610eafbe825b184a64ee35e1ab
 // Note: mount other resources here, using the same pattern above
 
 
@@ -74,7 +60,6 @@ app.use("/api/resources", resourcesRoutes(db));
 // Separate them into separate routes files (see above).
 
 
-<<<<<<< HEAD
 /***********USER GET ROUTES ************/
 app.get("/", (req, res) => {// include condition if logged in
   const templateVars = {
@@ -199,34 +184,6 @@ app.get("/myResources", (req, res) => {
     })
     .catch(err => res.send(err));
 });
-=======
-
-
-
-
-/***********RESOURCE GET ROUTES ************/
-
-
-app.get("/", (req, res) => { //backend request
-  res.render("/index"); //name of ejs i want to render
-});
-
-
-//*****POST LOGOUT*****
-app.post('/logout', (req, res) => {
-  req.session = null;
-  res.redirect('/');
-});
-
-
-
-
-
-
-
-
-
->>>>>>> 9397d6a61a4095e19838b4398796311b539e1558
 
 
 
