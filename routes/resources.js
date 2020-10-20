@@ -82,3 +82,9 @@ router.get("/ind_view", (req, res) => {
   return router;
 };
 
+SELECT users.user_name, date_created, title, description, url, media_type, AVG(resource_ratings.rating) as rating, COUNT(favourites.favourite)  as likes
+FROM resources
+JOIN users ON users.id = user_id
+JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
+JOIN favourites ON favourites.user_id = resources.user_id
+GROUP BY users.user_name, date_created, title, description, url, media_type, favourites.favourite;
