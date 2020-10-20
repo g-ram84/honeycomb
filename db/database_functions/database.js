@@ -10,6 +10,19 @@ const pool = new Pool({
   database: 'midterm'
 });
 
+// Get user
+
+const getUser = function(users) {
+  return pool.query(`
+  SELECT *
+  FROM users
+  WHERE email = $1
+  `, users)
+  .then(res => res.rows[0]);
+}
+exports.getUser = getUser;
+
+
 //LANDING PAGE FUNCTIONS
 
 //Create a function that displays content along with user_name, date_created, title, description, url
