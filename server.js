@@ -3,6 +3,7 @@
 
 // load .env data into process.env
 require('dotenv').config();
+const dbHelper = require ('./db/database_functions/database')
 
 // Web server config
 const PORT = process.env.PORT || 8080;
@@ -59,8 +60,18 @@ app.use("/api/resources", resourcesRoutes(db));
 // Warning: avoid creating more routes in this file! =====================Job For Later
 // Separate them into separate routes files (see above).
 
-app.get("/", (req, res) => {// include condition if logged in
+app.get("/", (req, res) => {
+console.log("Where at our / endpoint")
+  dbHelper.getAllContent()
+  .then(data => {
+  console.log(data);
   res.render("index");
+
+  });
+
+
+
+  // include condition if logged in
         // Home Page
     });
 

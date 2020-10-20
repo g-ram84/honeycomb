@@ -31,6 +31,7 @@ module.exports = (db) => {
     const userId = req.session['userId']; //Figure out userId
 
     if (userDatabase[userId]) { //query here
+
       //contentView(userId)
 
       const templateVars = {
