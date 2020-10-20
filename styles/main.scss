@@ -1,0 +1,56 @@
+
+@import "header";
+@import "nav";
+@import "layout";
+
+body {
+  background-color: orange;
+}
+.pa-0{
+  padding: 0;
+}
+
+
+
+
+.scroll-view {
+  overflow: scroll;
+  height: 100vh;
+}
+.hexagon {
+clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+height: 315px ;
+width: 90%height;
+
+}
+
+.logo-text {
+  color: red;
+}
+
+.card{
+  width: 300;
+  border-radius: 10px;
+
+}
+
+#like-icon {
+  height: 10px;
+  width: 10px;
+}
+
+#star-icon {
+  height: 15px;
+  width: 15px;
+}
+
+.card-footer {
+  padding: .75rem 1.25rem;
+  background-color: rgba(0,0,0,.03);
+ border-top: 0px solid rgba(0,0,0,0);
+}
+
+.text-card{
+  padding-top: 65px;
+  
+}
