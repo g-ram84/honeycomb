@@ -36,15 +36,26 @@ module.exports = (db) => {
 //       // Home Page
   // });
   router.get("/", (req, res) => {
-    // const templateVars = {
-    //   userId: req.session["userId"],
-    //   password: req.session["userId.password"]
-    // };
+// if drop down pressed and media type video is selected
+// filter through database bymedia type
+// do > show only media type video
+// else ifmedia type article
+// else ifmedia type image
+
       dbHelper.getAllContent()
       .then(data => {
+
+        const templateVars = {
+          resources: data
+        };
+
       console.log(data);
-      res.render("index");
-    });
+      res.render("index.ejs",templateVars);
+    })
+    // .then(data => {
+
+
+    // })
   });
   router.get('/register', (req, res) => {
     const templateVars = {

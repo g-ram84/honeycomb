@@ -1,5 +1,5 @@
 // server side requests
-
+let ejs = require('ejs');
 
 // load .env data into process.env
 require('dotenv').config();
