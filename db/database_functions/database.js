@@ -20,10 +20,6 @@ const getUser = function(user) {
   `, user)
   .then(res => res.rows[0]);
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 204598b61144b6aec0de4c158c25e69353462c63
 
 //LANDING PAGE FUNCTIONS
 
