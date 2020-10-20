@@ -23,6 +23,16 @@ const getUser = function(user) {
 
 //LANDING PAGE FUNCTIONS
 
+const getCategories = function(categories) {
+  return pool.query(`
+  SELECT resources.title, resources.url, resources.description, category
+  FROM categories
+  JOIN resources ON resources.id = resource_id
+  WHERE category = $1
+  `, categories)
+  .then(res => res.rows[0]);
+}
+exports.getCategories = getCategories;
 //Create a function that displays content along with user_name, date_created, title, description, url
 
 const getAllContent = function() {

@@ -10,7 +10,6 @@ const pool = new Pool({
   host: 'localhost',
   database: 'midterm'
 });
-// /// Users
 
 /**
  * Get a single user from the database given their email.
@@ -45,6 +44,11 @@ const getUserWithId = function (email) {
 exports.getUserWithId = getUserWithId;
 
 
+/**
+ * Add a new user to the database.
+ * @param {{name: string, password: string, email: string}} user
+ * @return {Promise<{}>} A promise to the user.
+ */
 /**
  * Add a new user to the database.
  * @param {{name: string, password: string, email: string}} user
