@@ -30,18 +30,19 @@ const getCategories = function(categories) {
   JOIN resources ON resources.id = resource_id
   WHERE category = $1
   `, categories)
-  .then(res => res.rows[0]);
+  .then(res => res.rows);
 }
 exports.getCategories = getCategories;
 //Create a function that displays content along with user_name, date_created, title, description, url
 
 const getAllContent = function() {
   return pool.query(`
-  SELECT users.user_name, date_created, title, description, url, media_type, ROUND(AVG(resource_ratings.rating),0) as rating
+  SELECT users.user_name, date_created, title, description, url, media_type, categories.category, ROUND(AVG(resource_ratings.rating),0) as rating
   FROM resources
-  JOIN users ON users.id = user_id
+  JOIN categories ON categories.resource_id = resources.id
+  JOIN users ON users.id = resources.user_id
   JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
-  GROUP BY users.user_name, date_created, title, description, url, media_type
+  GROUP BY users.user_name, date_created, title, description, url, media_type, categories.category
 `)
   .then(res => res.rows);
 }

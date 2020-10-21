@@ -44,21 +44,38 @@ module.exports = (db) => {
 
       dbHelper.getAllContent()
       .then(data => {
-
         const templateVars = {
           resources: data
-
-
         };
-
-      console.log(data);
-      res.render("index.ejs",templateVars);
+       console.log(data);
+       res.render("index.ejs",templateVars);
     })
-    .then(data => {
+    // .then(data => {
 
 
-    })
+    // })
   });
+  router.get("/", (req, res) => {
+    // if drop down pressed and media type video is selected
+    // filter through database bymedia type
+    // do > show only media type video
+    // else ifmedia type article
+    // else ifmedia type image
+
+          dbHelper.getAllContent()
+          .then(data => {
+            const templateVars = {
+              resources: data
+            };
+           console.log(data);
+           res.render("index.ejs",templateVars);
+        })
+        // .then(data => {
+
+
+        // })
+      });
+
   router.get('/register', (req, res) => {
     const templateVars = {
       userId: req.session["userId"],
@@ -105,7 +122,6 @@ module.exports = (db) => {
         // res.send({user: {name: user.name, email: user.email, id: user.id}});
       })
       .catch((err) => {
-
         console.log("errorlogin", err);
         res.redirect("/login");
 

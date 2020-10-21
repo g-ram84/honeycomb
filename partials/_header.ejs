@@ -11,17 +11,29 @@
           </button>
           <!-- Needs to filter results -->
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Food</a>
-            <a class="dropdown-item" href="#">Hobbies</a>
-            <a class="dropdown-item" href="#">Health</a>
-            <a class="dropdown-item" href="#">Education</a>
+            <a id="food" class="dropdown-item" href="#">Food</a>
+            <a id="hobbies"class="dropdown-item" href="#">Hobbies</a>
+            <a id="health"class="dropdown-item" href="#">Health</a>
+            <a id="education"class="dropdown-item" href="#">Education</a>
           </div>
       </nav>
           <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
             <a type="submit" class="btn btn-secondary" href="/api/users/register">Register</a>
             <a type="button" class="btn btn-secondary" href="/api/users/login">Login</a>
-            
+
           </div>
+
+          <!-- jQuery possible option filter resources by category-->
+          <!-- <script>
+            $(document).ready(function(){
+            Maybe??
+            $("#dropdownMenuButton").on("change",function(){
+              //Getting Value and Using DB query to set value
+             getCategory($("#dropdownMenuButton").val());
+              //Load resources to page via AJAX?
+          });
+            </script> -->
+
 
 
   </header>
