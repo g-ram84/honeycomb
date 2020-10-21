@@ -1,31 +1,51 @@
+<%for (resource of resources) { %>
+  <!-- resource = { media_type: 'video', user_name: ''... } -->
+  <% if (resource['media_type'] === 'video') { %>
+
+    <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
+      <iframe
+        class="embed-responsive-item"
+        class="card-img-top"
+        src= <%= resource.url %>
+        allowfullscreen>
+
+
+      </iframe>
+
+      <!-- https://www.youtube.com/watch?v=Mnob7AP6gck&ab_channel=MotorcyclistMagazine -->
+      <!-- <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/Mnob7AP6gck"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe> -->
+      <div class="card-body">
+        <h5 class="card-title"><%= resource.title%></h5>
+        <a href="#" class="btn btn-primary">comment</a>
+      </div>
+      <div class="card-footer d-flex justify-content-around">
+        <div>
+          <img id="like-icon" src="/documents/like.svg">
+          <small class="text-center">10</small>
+        </div>
+        <div>
+          <small class="text-center"><%= resource.rating%></small>
+          <img id="star-icon" src="/documents/star_24.png">
+        </div>
+      </div>
+    </div>
+
+    <!-- video card ends -->
+  <% } %>
+ <% }%>
+
+
+
 
 <!-- video card -->
 
-
-  <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
-    <iframe
-      class="embed-responsive-item"
-      class="card-img-top"
-      src="https://www.youtube.com/embed/qN3OueBm9F4"
-      allowfullscreen>
-    </iframe>
-    <div class="card-body">
-      <h5 class="card-title">Title from database here</h5>
-      <a href="#" class="btn btn-primary">comment</a>
-    </div>
-    <div class="card-footer d-flex justify-content-around">
-      <div>
-        <img id="like-icon" src="/documents/like.svg">
-        <small class="text-center">10</small>
-      </div>
-      <div>
-        <small class="text-center">4/5</small>
-        <img id="star-icon" src="/documents/star_24.png">
-      </div>
-    </div>
-  </div>
-
-<!-- video card ends -->
 
 <!-- picture card -->
   <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
@@ -45,9 +65,6 @@
     </div>
   </div>
 </div>
-
-
-
 
 <!-- picture card ends -->
 

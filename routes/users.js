@@ -4,6 +4,7 @@
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
+const dbHelper = require ('../db/database_functions/database')
 
 const { getUserWithEmail, addUser } = require('./dbhelperqueries');
 const {getUser,getAllContent,contentView,addFavourite,addComment,addRating,addResource,updateUser} = require('../db/database_functions/database')
@@ -12,24 +13,50 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+  // router.get("/", (req, res) => {
+  //   db.query(`SELECT * FROM users;`)
+  //     .then(data => {
+  //       const users = data.rows;
+  //       res.json({ users });
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
   /***********USER GET ROUTES ************/
-  router.get("/", (req, res) => {// include condition if logged in
-res.render("index");
-      // Home Page
-  });
 
+//   router.get("/", (req, res) => {// include condition if logged in
+//     const templateVars = {
+//       userId: req.session["userId"],
+//       password: req.session["userId.password"]
+//     };
+// res.render("index");
+//       // Home Page
+  // });
+  router.get("/", (req, res) => {
+// if drop down pressed and media type video is selected
+// filter through database bymedia type
+// do > show only media type video
+// else ifmedia type article
+// else ifmedia type image
+
+      dbHelper.getAllContent()
+      .then(data => {
+
+        const templateVars = {
+          resources: data
+        };
+
+      console.log(data);
+      res.render("index.ejs",templateVars);
+    })
+    // .then(data => {
+
+
+    // })
+  });
   router.get('/register', (req, res) => {
     const templateVars = {
       userId: req.session["userId"],

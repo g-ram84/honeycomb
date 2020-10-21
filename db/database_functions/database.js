@@ -37,9 +37,11 @@ exports.getCategories = getCategories;
 
 const getAllContent = function() {
   return pool.query(`
-  SELECT users.user_name, date_created, title, description, url
+  SELECT users.user_name, date_created, title, description, url, media_type, ROUND(AVG(resource_ratings.rating),0) as rating
   FROM resources
   JOIN users ON users.id = user_id
+  JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
+  GROUP BY users.user_name, date_created, title, description, url, media_type
 `)
   .then(res => res.rows);
 }

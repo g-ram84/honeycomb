@@ -29,11 +29,16 @@ module.exports = (db) => {
 
   router.get("/new_content", (req, res) => { //backend request
     const userId = req.session['userId']; //Figure out userId
+
     if (userDatabase[userId]) { //query here
+
       //contentView(userId)
 
       const templateVars = {
         userId
+
+
+
       };
       res.render("new_content", templateVars);
     } else {
@@ -64,15 +69,6 @@ router.get("/ind_view", (req, res) => {
   };
   res.render("ind_view.ejs", templateVars);
 });
-
-
-
-
-
-
-
-
-
 
 
 
