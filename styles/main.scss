@@ -4,14 +4,11 @@
 @import "layout";
 
 body {
-  background-color: orange;
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(9, 9, 9));
 }
 .pa-0{
   padding: 0;
 }
-
-
-
 
 .scroll-view {
   overflow: scroll;
@@ -31,7 +28,6 @@ width: 90%height;
 .card{
   width: 300;
   border-radius: 10px;
-
 }
 
 #like-icon {
@@ -46,11 +42,16 @@ width: 90%height;
 
 .card-footer {
   padding: .75rem 1.25rem;
-  background-color: rgba(0,0,0,.03);
+  background-color: rgba(0,0,0,0);
  border-top: 0px solid rgba(0,0,0,0);
 }
 
 .text-card{
   padding-top: 65px;
+
+}
+#image_thumbnail {
+  max-width: 200px;
+  max-height: 150px;
 
 }

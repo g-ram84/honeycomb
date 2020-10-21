@@ -24,26 +24,65 @@ const getUser = function(user) {
 //LANDING PAGE FUNCTIONS
 
 const getCategories = function(categories) {
+  console.log(`catt : ${categories}`)
   return pool.query(`
   SELECT resources.title, resources.url, resources.description, category
   FROM categories
   JOIN resources ON resources.id = resource_id
   WHERE category = $1
   `, categories)
-  .then(res => res.rows[0]);
+  .then(res => {
+    console.log("response", res)
+    return res.rows
+  });
 }
 exports.getCategories = getCategories;
 //Create a function that displays content along with user_name, date_created, title, description, url
 
-const getAllContent = function() {
-  return pool.query(`
-  SELECT users.user_name, date_created, title, description, url, media_type, ROUND(AVG(resource_ratings.rating),0) as rating
+const getAllContent = function(options = {}) {
+  const queryParams = []
+let queryString = `
+  SELECT
+    resources.id as id,
+    categories.category as category,
+    resources.title as title,
+    users.user_name as user_name,
+    resources.media_type as media_type,
+    resources.url as url,
+    resources.description as description,
+    ROUND(AVG(resource_ratings.rating),0) as rating
   FROM resources
-  JOIN users ON users.id = user_id
+  JOIN categories ON categories.resource_id = resources.id
+  JOIN users ON users.id = resources.user_id
   JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
-  GROUP BY users.user_name, date_created, title, description, url, media_type
-`)
-  .then(res => res.rows);
+  `
+
+  queryString += `GROUP BY
+    resources.id,
+    categories.category,
+    resources.title,
+    resources.media_type,
+    resources.url,
+    resources.description,
+    users.user_name
+  `;
+
+  if (options.category) {
+    queryParams.push(`${options.category}`);
+    queryString += `HAVING categories.category = $${queryParams.length}`;
+  }
+
+  queryString += ';'
+  console.log('queryString', queryString)
+  console.log('queryParams', queryParams)
+  return pool.query(queryString, queryParams)
+  .then(res => {
+console.log('res.rows', res.rows)
+    return res.rows
+  })
+  .catch(err => {
+console.log('err', err)
+  });
 }
 exports.getAllContent = getAllContent;
 
@@ -52,15 +91,31 @@ exports.getAllContent = getAllContent;
 
 //Create a function that shows content (url), title, rating, comments
 const contentView = function(id) {
+console.log('typeof id', typeof id)
+
   return pool.query(`
-  SELECT url, resources.id, title, AVG(resource_ratings.rating) as average_rating, comments.comment, resources.date_created
+  SELECT
+  url,
+  resources.id as id,
+  title,
+  ROUND(AVG(resource_ratings.rating),0) as average_rating,
+  comments.comment as comment,
+  resources.date_created as date_created
   FROM resources
+
   JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
   JOIN comments ON comments.resource_id = resources.id
-  WHERE resources.id = $1
-  GROUP BY resources.url, resources.id, comments.comment
- `, id)
-  .then(res => res.rows);
+
+  GROUP BY
+    resources.url,
+    resources.id,
+    comments.comment,
+    url,
+    title,
+    resources.date_created
+  HAVING resources.id = $1;
+ `, [id])
+  .then(res => res.rows[0]);
 }
 exports.contentView = contentView;
 

@@ -7,7 +7,7 @@
 const dbHelper = require ('../db/database_functions/database')
 
 const { getUserWithEmail, addUser } = require('./dbhelperqueries');
-const {getUser,getAllContent,contentView,addFavourite,addComment,addRating,addResource,updateUser} = require('../db/database_functions/database')
+// const {getUser,getAllContent,contentView,addFavourite,addComment,addRating,addResource,updateUser} = require('../db/database_functions/database')
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -36,29 +36,58 @@ module.exports = (db) => {
 //       // Home Page
   // });
   router.get("/", (req, res) => {
-// if drop down pressed and media type video is selected
-// filter through database bymedia type
-// do > show only media type video
-// else ifmedia type article
-// else ifmedia type image
 
       dbHelper.getAllContent()
       .then(data => {
-
         const templateVars = {
           resources: data
-
-
         };
-
-      console.log(data);
-      res.render("index.ejs",templateVars);
+      //  console.log(data);
+       res.render("index.ejs",templateVars);
     })
-    .then(data => {
+    // .then(data => {
 
 
-    })
+    // })
   });
+
+  router.post("/", (req, res) => {
+
+    console.log(`req body: ${JSON.stringify(req.body)}`)
+    // let options = req.body
+          dbHelper.getAllContent()
+          .then(data => {
+            const templateVars = {
+              resources: data
+            };
+            console.log(`res: ${data}`)
+           return data
+          //  res.render("index.ejs",templateVars);
+        })
+        // .then(data => {
+
+
+        // })
+      });
+
+//restart server
+  router.get("/", (req, res) => {
+
+
+          dbHelper.getAllContent()
+          .then(data => {
+            const templateVars = {
+              resources: data
+            };
+           console.log(data);
+           res.render("index.ejs",templateVars);
+        })
+        // .then(data => {
+
+
+        // })
+      });
+
   router.get('/register', (req, res) => {
     const templateVars = {
       userId: req.session["userId"],
@@ -105,7 +134,6 @@ module.exports = (db) => {
         // res.send({user: {name: user.name, email: user.email, id: user.id}});
       })
       .catch((err) => {
-
         console.log("errorlogin", err);
         res.redirect("/login");
 

@@ -11,13 +11,28 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
+  // router.get("/", (req, res) => {
+  //   let query = `SELECT * FROM resources`;
+  //   console.log(query);
+  //   db.query(query)
+  //     .then(data => {
+  //       const resources = data.rows;
+  //       res.json({ resources });
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
+//Filter for food
   router.get("/", (req, res) => {
-    let query = `SELECT * FROM resources`;
-    console.log(query);
-    db.query(query)
-      .then(data => {
-        const resources = data.rows;
-        res.json({ resources });
+    console.log("req.query>>>",req.query)
+   getAllContent(req.query)
+    .then(resources => {
+         console.log("resources>>>",resources)
+        res.render('index', { resources })
+        // res.json({ resources });
       })
       .catch(err => {
         res
@@ -60,14 +75,17 @@ module.exports = (db) => {
   // });
 
 //***** YOUR CREATED resource PAGE *****
-router.get("/ind_view", (req, res) => {
+router.get("/:id", (req, res) => {
 
-  let { resource } = req.params;
-  const templateVars = {
-    userId: req.session["userId"],
-    resource: resource,
-  };
-  res.render("ind_view.ejs", templateVars);
+  const { id } = req.params;
+  contentView(id)
+  .then(resource => {
+    const templateVars = {
+      // userId: req.session["userId"],
+      resource: resource,
+    };
+    res.render("ind_view.ejs", templateVars);
+  })
 });
 
 

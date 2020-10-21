@@ -5,24 +5,28 @@
         <img src="/documents/honeycomb.svg" class="my-2">
         <h3 class="logo-text">honeyComb</h3>
 
-        <div class="dropdown d-flex my-2">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Search by Category
-          </button>
-          <!-- Needs to filter results -->
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Food</a>
-            <a class="dropdown-item" href="#">Hobbies</a>
-            <a class="dropdown-item" href="#">Health</a>
-            <a class="dropdown-item" href="#">Education</a>
-          </div>
+
       </nav>
           <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
             <a type="submit" class="btn btn-secondary" href="/api/users/register">Register</a>
             <a type="button" class="btn btn-secondary" href="/api/users/login">Login</a>
-            
-          </div>
 
+          </div>
+<form id="categorselection" method="POST" action="/api/users">
+  <div >
+    <select name="catselect" class="custom-select" id="inputGroupSelect02">
+      <option selected>Choose...</option>
+      <option value="Food">Food</option>
+      <option value="Hobbies">Hobbies</option>
+      <option value="Health">Health</option>
+      <option value="Education">Education</option>
+      <option value=" ">All Categories</option>
+    </select>
+    <div class="input-group-append">
+      <label class="" for="inputGroupSelect02">Options</label>
+    </div>
+  </div>
+</form>
 
   </header>
 
