@@ -14,7 +14,7 @@
 
       <div class="card-body">
         <h5 class="card-title"><%= resource.title%></h5>
-        <a href="#" class="btn btn-primary">comment</a>
+        <a href="/api/resources/<%= resource.id%>" class="btn btn-primary">view</a>
       </div>
       <div class="card-footer d-flex justify-content-around">
         <div>
@@ -41,7 +41,7 @@
     <img id="image_thumbnail" src="<%= resource['url']%>" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title"><%= resource.title%></h5>
-      <a href="#" class="btn btn-primary">comment</a>
+      <a href="/api/resources/<%= resource.id%>" class="btn btn-primary">view</a>
     </div>
     <div class="card-footer d-flex justify-content-around">
       <div>
@@ -65,7 +65,7 @@
       <small>
         <p class="card-text"><%= resource.description%></p>
       </small>
-      <a href="#" class="btn btn-primary">comment</a>
+      <a href="/api/resources/<%= resource.id%>" class="btn btn-primary">view</a>
     </div>
     <div class="card-footer d-flex justify-content-around">
       <div>
