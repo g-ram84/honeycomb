@@ -47,15 +47,17 @@ module.exports = (db) => {
 
         const templateVars = {
           resources: data
+
+
         };
 
       console.log(data);
       res.render("index.ejs",templateVars);
     })
-    // .then(data => {
+    .then(data => {
 
 
-    // })
+    })
   });
   router.get('/register', (req, res) => {
     const templateVars = {

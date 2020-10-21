@@ -2,25 +2,14 @@
   <!-- resource = { media_type: 'video', user_name: ''... } -->
   <% if (resource['media_type'] === 'video') { %>
 
+    <!-- video card -->
     <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
-      <iframe
+      <iframe id="video_thumbnail"
         class="embed-responsive-item"
         class="card-img-top"
-        src= <%= resource.url %>
-        allowfullscreen>
-
-
+        src= "<%= resource['url']%>"
+      >
       </iframe>
-
-      <!-- https://www.youtube.com/watch?v=Mnob7AP6gck&ab_channel=MotorcyclistMagazine -->
-      <!-- <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/Mnob7AP6gck"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe> -->
       <div class="card-body">
         <h5 class="card-title"><%= resource.title%></h5>
         <a href="#" class="btn btn-primary">comment</a>
@@ -31,7 +20,7 @@
           <small class="text-center">10</small>
         </div>
         <div>
-          <small class="text-center"><%= resource.rating%></small>
+          <small class="text-center"><%= resource.rating%>/5</small>
           <img id="star-icon" src="/documents/star_24.png">
         </div>
       </div>
@@ -39,15 +28,13 @@
 
     <!-- video card ends -->
   <% } %>
- <% }%>
+  <% }%>
 
 
 
 
-<!-- video card -->
 
-
-<!-- picture card -->
+  <!-- picture card -->
   <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
     <img src="/documents/eagle.jpg" class="card-img-top" alt="...">
     <div class="card-body">
@@ -62,30 +49,32 @@
       <div>
         <small class="text-center">4/5</small>
         <img id="star-icon" src="/documents/star_24.png">
+      </div>
     </div>
   </div>
-</div>
 
-<!-- picture card ends -->
+  <!-- picture card ends -->
 
-<!-- text card  -->
-<div class="card text-center hexagon d-flex align-self-center text-card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <small>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </small>
-    <a href="#" class="btn btn-primary">comment</a>
-  </div>
-  <div class="card-footer d-flex justify-content-around">
-    <div>
-      <img id="like-icon" src="/documents/like.svg">
-      <small class="text-center">10</small>
+  <!-- text card  -->
+  <div class="card text-center hexagon d-flex align-self-center text-card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <small>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </small>
+      <a href="#" class="btn btn-primary">comment</a>
     </div>
-    <div>
-      <small class="text-center">4/5</small>
-      <img id="star-icon" src="/documents/star_24.png">
+    <div class="card-footer d-flex justify-content-around">
+      <div>
+        <img id="like-icon" src="/documents/like.svg">
+        <small class="text-center">10</small>
+      </div>
+      <div>
+        <small class="text-center">4/5</small>
+        <img id="star-icon" src="/documents/star_24.png">
+      </div>
+    </div>
   </div>
-</div>
-</div>
-<!-- text card ends -->
+  <!-- text card ends -->
+
+
