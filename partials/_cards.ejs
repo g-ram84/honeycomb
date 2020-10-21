@@ -10,6 +10,8 @@
         src= "<%= resource['url']%>"
       >
       </iframe>
+
+
       <div class="card-body">
         <h5 class="card-title"><%= resource.title%></h5>
         <a href="#" class="btn btn-primary">comment</a>
@@ -27,18 +29,18 @@
     </div>
 
     <!-- video card ends -->
-  <% } %>
-  <% }%>
 
 
 
 
+
+   <%} else if (resource['media_type'] === 'image') { %>
 
   <!-- picture card -->
   <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
-    <img src="/documents/eagle.jpg" class="card-img-top" alt="...">
+    <img src="<%= resource['url']%>" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">Card title from db</h5>
+      <h5 class="card-title"><%= resource.title%></h5>
       <a href="#" class="btn btn-primary">comment</a>
     </div>
     <div class="card-footer d-flex justify-content-around">
@@ -47,20 +49,21 @@
         <small class="text-center">10</small>
       </div>
       <div>
-        <small class="text-center">4/5</small>
+        <small class="text-center"><%= resource.rating%>/5</small>
         <img id="star-icon" src="/documents/star_24.png">
       </div>
     </div>
   </div>
 
   <!-- picture card ends -->
+  <%} else if (resource['media_type'] === 'article') { %>
 
   <!-- text card  -->
   <div class="card text-center hexagon d-flex align-self-center text-card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
+      <h5 class="card-title"><%= resource.title%></h5>
       <small>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p class="card-text"><%= resource.description%></p>
       </small>
       <a href="#" class="btn btn-primary">comment</a>
     </div>
@@ -70,11 +73,12 @@
         <small class="text-center">10</small>
       </div>
       <div>
-        <small class="text-center">4/5</small>
+        <small class="text-center"><%= resource.rating%>/5</small>
         <img id="star-icon" src="/documents/star_24.png">
       </div>
     </div>
   </div>
   <!-- text card ends -->
 
-
+  <% }%>
+  <% };%>
