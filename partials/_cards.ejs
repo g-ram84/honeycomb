@@ -4,24 +4,12 @@
 
     <!-- video card -->
     <div class="card text-center hexagon d-flex align-self-center" style="width: 18rem;">
-      <iframe
+      <iframe id="video_thumbnail"
         class="embed-responsive-item"
         class="card-img-top"
-        src= <%= resource.url %>
-        >
-
-
-      <!-- </iframe> -->
-
-      <!-- https://www.youtube.com/watch?v=Mnob7AP6gck&ab_channel=MotorcyclistMagazine -->
-      <!-- <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/Mnob7AP6gck"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe> -->
+        src= "<%= resource['url']%>"
+      >
+      </iframe>
       <div class="card-body">
         <h5 class="card-title"><%= resource.title%></h5>
         <a href="#" class="btn btn-primary">comment</a>
@@ -32,7 +20,7 @@
           <small class="text-center">10</small>
         </div>
         <div>
-          <small class="text-center"><%= resource.rating%></small>
+          <small class="text-center"><%= resource.rating%>/5</small>
           <img id="star-icon" src="/documents/star_24.png">
         </div>
       </div>
@@ -40,7 +28,7 @@
 
     <!-- video card ends -->
   <% } %>
-
+  <% }%>
 
 
 
@@ -89,4 +77,4 @@
   </div>
   <!-- text card ends -->
 
-  <% }%>
+

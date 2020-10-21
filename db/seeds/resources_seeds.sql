@@ -1,5 +1,5 @@
 INSERT INTO resources (url, user_id, title, description, date_created, media_type)
-VALUES ('https://www.youtube.com/watch?v=iu36cQEm2Qs', 1, 'How to Bake a Cake Like a Pro', 'Easy instructional video on how to bake a cake', '2020-07-25', 'video'),
+VALUES ('https://www.youtube.com/embed/iu36cQEm2Qs', 1, 'How to Bake a Cake Like a Pro', 'Easy instructional video on how to bake a cake', '2020-07-25', 'video'),
 ('https://www.youtube.com/embed/4Ouobcj5dBo', 1, '5 Tips to Survive Flat and Narrow Runs', 'Instructional snowboard video for beginners', '2020-07-03', 'video'),
 ('https://i.pinimg.com/736x/99/70/fa/9970fad1fa4f8c1891b8555cc4830229.jpg', 1, 'Step by Step Crochet Stitch Tutorial', 'A beginners guide to crocheting', '2020-06-30', 'image'),
 ('https://www.youtube.com/embed/AjfXHe7ZCDw', 2, 'Olympic Weightlifting 101', 'How to snatch -  a video guide', '2020-07-31', 'video'),
