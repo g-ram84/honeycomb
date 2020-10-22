@@ -40,12 +40,12 @@
       <div class="row">
         <div class="col-2">
           <nav class="nav sticky-top">
-            
+            <%- include('../partials/_loggedin_nav') %>
           </nav>
         </div>
 
-
-        <div class="col-6 scroll-view ">
+        <div class="col-6 ">
+          <div class="sticky-top">
           <div class="row justify-content-center">
             <h1 class="h1"><%= resource.title%></h1>
           <div class="card mb-3">
@@ -55,6 +55,7 @@
                 src= "<%= resource['url']%>"
               >
             </iframe>
+          </div>
           </div>
 
           <div class="card-body">
@@ -74,49 +75,27 @@
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-      <main class="container">
+    </div>
+
+    <div class="col-4 scroll-view" id="comment_container">
+      <!-- <main class="container"> -->
         <section class="new-comment">
-          <h2>Compose Comment</h2>
+          <h2>comments?</h2>
           <!-- <form method="post" action="/api/resources/<%=resource.id%>"> -->
             <label for="comment-text">What are you humming about?</label>
             <div class="error-empty"><p>Your comment is empty!</p></div>
             <div class="error-140"><p>Your comment needs to be less than 140 characters!</p></div>
             <textarea name="text" id="comment-text"><%=resource.comment%></textarea>
             <div class="footer">
-              <button id="submit-button">comment</button>
+              <button class="btn btn-secondary" id="submit-button">comment</button>
               <output id="textAreaOutput" name="counter" class="counter" for="comment-text">140</output>
             </div>
           <!-- </form> -->
         </section>
         <div id="comments-container">
         </div>
-      </main>
-=======
-    </div>
-
-
-        <div class="col-4 justify-content-center">
-
-        <!-- <main class="container"> -->
-          <section class="new-tweet">
-            <h2>Compose Tweet</h2>
-            <form method="post" action="/tweets">
-              <label for="comment-text">What are you humming about?</label>
-              <div class="error-empty"><p>Your tweet is empty!</p></div>
-              <div class="error-140"><p>Your tweet needs to be less than 140 characters!</p></div>
-              <textarea name="text" id="-text"></textarea>
-              <div class="footer">
-                <button id="submit-button"type="submit">Tweet</button>
-                <output id="textAreaOutput" name="counter" class="counter" for="comment-text">140</output>
-              </div>
-            </form>
-          </section>
-          <div id="tweets-container">
-          </div>
-        <!-- </main> -->
+      <!-- </main> -->
       </div>
->>>>>>> 6e852d65bb6b041944e4648c7858eb1b8de24b25
   </body>
 </html>
 </html>
