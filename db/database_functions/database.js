@@ -100,11 +100,14 @@ console.log('typeof id', typeof id)
   title,
   ROUND(AVG(resource_ratings.rating),0) as average_rating,
   comments.comment as comment,
-  resources.date_created as date_created
+  resources.date_created as date_created,
+  users.user_name as user_name
+
   FROM resources
 
   JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
   JOIN comments ON comments.resource_id = resources.id
+  RIGHT JOIN users ON users.id = resources.user_id
 
   GROUP BY
     resources.url,
@@ -112,7 +115,8 @@ console.log('typeof id', typeof id)
     comments.comment,
     url,
     title,
-    resources.date_created
+    resources.date_created,
+    users.user_name
   HAVING resources.id = $1;
  `, [id])
   .then(res => res.rows[0]);
@@ -124,7 +128,7 @@ exports.contentView = contentView;
 const addFavourite = function(favourites) {
   return pool.query(`
   INSERT INTO favourites (user_id, resource_id, favourite)
-  VALUES ($1, $2, TRUE)
+  VALUES ($1, $2, 'YES')
   RETURNING *
 `, [favourites.user_id, favourites.resource_id, favourites.favourite])
   .then(res => res.rows[0]);
