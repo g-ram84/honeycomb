@@ -63,16 +63,19 @@ module.exports = (db) => {
   });
 
 
-  // router.post('/', (req, res) => {
-  //   addResource({resource})// what am i defining as resource// an object from
-  //     .then(resource => {
-  //       res.send(resource);
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //       res.send(err)
-  //     });
-  // });
+  router.post('/:id', (req, res) => {
+
+contentView(id)
+createCommentElement(comment)
+    addResource({resource})// what am i defining as resource// an object from
+      .then(resource => {
+        res.send(resource);
+      })
+      .catch(err => {
+        console.error(err);
+        res.send(err)
+      });
+  });
 
 //***** YOUR CREATED resource PAGE *****
 router.get("/:id", (req, res) => {
@@ -83,6 +86,7 @@ router.get("/:id", (req, res) => {
     const templateVars = {
       // userId: req.session["userId"],
       resource: resource,
+
     };
     res.render("ind_view.ejs", templateVars);
   })
