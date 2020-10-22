@@ -43,23 +43,23 @@ module.exports = (db) => {
 
 
   router.get("/new_content", (req, res) => { //backend request
-    const userId = req.session['userId']; //Figure out userId
+    // const userId = req.session['userId']; //Figure out userId
 
-    if (userDatabase[userId]) { //query here
+    // if (userDatabase[userId]) { //query here
 
-      //contentView(userId)
+    //   //contentView(userId)
 
-      const templateVars = {
-        userId
+    //   const templateVars = {
+    //     userId
 
 
 
-      };
-      res.render("new_content", templateVars);
-    } else {
-      res.redirect('/login');
-    }
-    res.render("new_content.ejs"); //name of ejs i want to render
+      // };
+      res.render("new_content")//templateVars);
+    // } else {
+    //   res.redirect('/login');
+    // }
+    // res.render("new_content.ejs"); //name of ejs i want to render
   });
 
 
