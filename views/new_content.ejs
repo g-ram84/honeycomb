@@ -41,7 +41,7 @@
           <form method="post" action="/new_content">
             <div class="form-group">
               <label for="url">newURL</label>
-              <input type="url" class="form-control" id="new_url">
+              <input type="url" class="form-control" id="new_url" name="url">
             </div>
             <div class="form-group">
               <select name="catselect" class="custom-select" id="inputGroupSelect03">
@@ -53,7 +53,7 @@
               </select>
             </div>
             <div class="form-group">
-              <select name="media_select" class="custom-select" id="inputGroupSelect04">
+              <select name="media_type" class="custom-select" id="inputGroupSelect04">
                 <option selected>Choose...</option>
                 <option value="video">video</option>
                 <option value="picture">picture</option>
@@ -64,7 +64,7 @@
               <h2>description</h2>
                 <div class="error-empty"><p>Please enter a description.</p></div>
                 <div class="error-140"><p>Gotta be less than 140 characters!</p></div>
-                <textarea name="text" id="-text"></textarea>
+                <textarea name="description" id="-text"></textarea>
                 <div class="footer">
                   <output id="ind_page_counter" name="counter" class="counter" for="comment-text">140</output>
                 </div>

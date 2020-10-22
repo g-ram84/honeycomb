@@ -63,6 +63,13 @@ module.exports = (db) => {
   });
 
 
+  router.post('/new_content', (req, res) => {
+    addResource(req.body)
+    .then(resource => {
+      res.redirect('/')
+    })
+  })
+
   router.post('/:id', (req, res) => {
 
 contentView(id)
