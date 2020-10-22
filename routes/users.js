@@ -72,16 +72,17 @@ module.exports = (db) => {
 
 //restart server
   router.get("/", (req, res) => {
-
-
           dbHelper.getAllContent()
           .then(data => {
             const templateVars = {
               resources: data
             };
-           console.log(data);
+
            res.render("index.ejs",templateVars);
         })
+          .catch(e => {
+            console.log('e>>>>', e)
+          })
         // .then(data => {
 
 

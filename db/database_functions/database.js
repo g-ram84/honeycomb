@@ -77,12 +77,13 @@ let queryString = `
   console.log('queryParams', queryParams)
   return pool.query(queryString, queryParams)
   .then(res => {
-console.log('res.rows', res.rows)
+// console.log('res.rows', res.rows)
     return res.rows
   })
   .catch(err => {
-console.log('err', err)
-  });
+    console.log('err', err)
+    throw 'we have an error'
+      });
 }
 exports.getAllContent = getAllContent;
 
@@ -127,10 +128,10 @@ exports.contentView = contentView;
 
 const addFavourite = function(favourites) {
   return pool.query(`
-  INSERT INTO favourites (user_id, resource_id, favourite)
-  VALUES ($1, $2, 'YES')
+  INSERT INTO favourites (user_id, resource_id)
+  VALUES ($1, $2)
   RETURNING *
-`, [favourites.user_id, favourites.resource_id, favourites.favourite])
+`, [favourites.user_id, favourites.resource_id,])
   .then(res => res.rows[0]);
 }
 exports.addFavourite = addFavourite;
@@ -207,3 +208,14 @@ const searchResources = function(search) {
   .then(res => res.rows);
 };
   exports.searchResources = searchResources;
+
+const myResources = function(resources) {
+  return pool.query(`
+  SELECT resources.*, favourites.*
+  FROM resources
+  JOIN favourites ON resources.id = favourites.resource_id
+  WHERE resources.user_id = $1;
+  `, resources)
+  .then(res => res.rows);
+};
+exports.myResources = myResources;

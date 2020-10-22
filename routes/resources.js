@@ -28,7 +28,6 @@ module.exports = (db) => {
 
   //Filter for food
   router.get("/", (req, res) => {
-    console.log("req.query>>>", req.query);
     getAllContent(req.query)
       .then(resources => {
         console.log("resources>>>", resources);
