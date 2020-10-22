@@ -51,26 +51,11 @@ module.exports = (db) => {
 
       );
 
-  });
 
-  router.post("/:id/comments", (req, res) => {
-    console.log("req.body>>>",req.body)
-    const { comments, resource_id, user_id}  = req.body
 
-    addComment(req.body)
-
-res.send("ok")
   });
 
 
- // post requestresources/id/comments save the correct comment with that add Comment function respond res.send ok
-  // on front end container empty rerun get comments ajax request to get comments and for loop to populate again
-  //   with resource id
-  // const addCommentToPage = () => {
-  //   $("#submit-button").click(function () {
-  //     console.log("onCLICK");
-  //     renderComments();
-  //   });
 
 
   router.get("/new_content", (req, res) => {
@@ -78,12 +63,14 @@ res.send("ok")
   });
 
 
-  router.post('/:id', (req, res) => { // currently not working
+  router.post('/:id', (req, res) => {
 
     const { id } = req.params;
+    console.log("id>>>", id);
     contentView(id);
-    console.log('post :id comment>>>>',comment)
-    const { comment } = req.body
+    console.log("comment>>>", comment);
+    const { comment } = req.body;
+    console.log(comment)
       .then(comment => {
         res.send('ind_view', comment);
       })
