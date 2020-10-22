@@ -38,7 +38,7 @@
       </div>
       <div class="col-9 ">
         <div class="justify-content-center">
-          <form method="post" action="/new_content">
+          <form method="post" action="/api/resources/new_content">
             <div class="form-group">
               <label for="url">newURL</label>
               <input type="url" class="form-control" id="new_url" name="url">
@@ -56,9 +56,10 @@
               <select name="media_type" class="custom-select" id="inputGroupSelect04">
                 <option selected>Choose...</option>
                 <option value="video">video</option>
-                <option value="picture">picture</option>
+                <option value="image">image</option>
                 <option value="article">article</option>
               </select>
+              <input type="text" name="title">
             </div>
             <section class="new-tweet">
               <h2>description</h2>

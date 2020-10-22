@@ -52,7 +52,7 @@ let queryString = `
     resources.description as description,
     ROUND(AVG(resource_ratings.rating),0) as rating
   FROM resources
-  JOIN categories ON categories.resource_id = resources.id
+  LEFT JOIN categories ON categories.resource_id = resources.id
   JOIN users ON users.id = resources.user_id
   JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
   `
@@ -106,8 +106,8 @@ console.log('typeof id', typeof id)
 
   FROM resources
 
-  JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
-  JOIN comments ON comments.resource_id = resources.id
+  LEFT JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
+  LEFT JOIN comments ON comments.resource_id = resources.id
   RIGHT JOIN users ON users.id = resources.user_id
 
   GROUP BY
@@ -167,7 +167,7 @@ const addResource = function(resources){
   INSERT INTO resources (url, user_id, title, description, date_created, media_type)
   VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *
-  `, [resources.url, resources.user_id, resources.title, resources.description, resources.date_created, resources.media_type])
+  `, [resources.url, resources.user_id || 1, resources.title, resources.description, resources.date_created, resources.media_type])
   .then(res => res.rows[0]);
 }
 exports.addResource = addResource;
