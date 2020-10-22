@@ -39,26 +39,28 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-2">
-
-<!-- need new navbar here -->
-
-</div>
+          <nav class="nav sticky-top">
+            
+          </nav>
+        </div>
 
 
         <div class="col-6 scroll-view ">
           <div class="row justify-content-center">
             <h1 class="h1"><%= resource.title%></h1>
-        <div class="card mb-3">
-          <iframe id="video_thumbnail"
+          <div class="card mb-3">
+            <iframe id="video_thumbnail"
                 class="embed-responsive-item"
                 class="card-img-top"
                 src= "<%= resource['url']%>"
               >
-              </iframe>
-          <div class="card-body">
-            <h5 class="card-title">Enter a comment</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </iframe>
           </div>
+
+          <div class="card-body">
+            <!-- <h5 class="card-title">Card title</h5> -->
+            <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+
           <div class="card-footer d-flex justify-content-around">
             <div>
               <img id="like-icon" src="/documents/like.svg">
@@ -72,6 +74,7 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <main class="container">
         <section class="new-comment">
           <h2>Compose Comment</h2>
@@ -89,6 +92,31 @@
         <div id="comments-container">
         </div>
       </main>
+=======
+    </div>
+
+
+        <div class="col-4 justify-content-center">
+
+        <!-- <main class="container"> -->
+          <section class="new-tweet">
+            <h2>Compose Tweet</h2>
+            <form method="post" action="/tweets">
+              <label for="comment-text">What are you humming about?</label>
+              <div class="error-empty"><p>Your tweet is empty!</p></div>
+              <div class="error-140"><p>Your tweet needs to be less than 140 characters!</p></div>
+              <textarea name="text" id="-text"></textarea>
+              <div class="footer">
+                <button id="submit-button"type="submit">Tweet</button>
+                <output id="textAreaOutput" name="counter" class="counter" for="comment-text">140</output>
+              </div>
+            </form>
+          </section>
+          <div id="tweets-container">
+          </div>
+        <!-- </main> -->
+      </div>
+>>>>>>> 6e852d65bb6b041944e4648c7858eb1b8de24b25
   </body>
 </html>
 </html>

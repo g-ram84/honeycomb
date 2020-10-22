@@ -1,6 +1,6 @@
-INSERT INTO favourites (user_id, resource_id, favourite)
-VALUES (1, 1, FALSE),
-(2, 1, TRUE),
-(3, 1, FALSE);
+INSERT INTO favourites (user_id, resource_id)
+VALUES (1, 1),
+(2, 1),
+(3, 1);
 
 
