@@ -3,7 +3,7 @@
     <img src="/documents/honeycomb.svg" class="my-2">
     <h3 class="logo-text">honeyComb</h3>
 
-<div><%resource.user_name%></div>
+<!-- <div>resource.user_name</div> -->
 <form id="categorselection" method="POST" action="/api/users">
   <div >
     <select name="catselect" class="custom-select" id="inputGroupSelect02">
@@ -15,13 +15,14 @@
       <option value=" ">allCategories</option>
     </select>
     <div class="input-group-append">
-      <label class="" for="inputGroupSelect02">options</label>
+
     </div>
   </div>
 </form>
 
-<div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-      <a type="submit" class="btn btn-secondary" href="/api/users/new_content">newContent</a>
-      <a type="button" class="btn btn-secondary" href="/api/users/login">myResources</a>
+<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+      <a type="submit" class="btn btn-secondary" href="/api/resources/new_content">newContent</a>
+      <a type="button" class="btn btn-secondary" href="/api/resources/myresources">myResources</a>
+      <a type="button" class="btn btn-secondary" href="/api/resources">home</a>
 </div>
 
