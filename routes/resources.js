@@ -4,7 +4,7 @@
  *   these routes are mounted onto /widgets
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-const { getUser, getAllContent, contentView, addFavourite, addComment, addRating, addResource, updateUser } = require('../db/database_functions/database');
+const { getUser, commentsForResourceId, getAllContent, contentView, addFavourite, addComment, addRating, addResource, updateUser } = require('../db/database_functions/database');
 
 const express = require('express');
 const router = express.Router();
@@ -28,12 +28,11 @@ module.exports = (db) => {
 
   //Filter for food
   router.get("/", (req, res) => {
-    console.log("req.query>>>", req.query);
+    console.log("im in router get /");
+    console.log(getAllContent());
     getAllContent(req.query)
       .then(resources => {
-        console.log("resources>>>", resources);
         res.render('index', { resources });
-        // res.json({ resources });
       })
       .catch(err => {
         res
@@ -41,6 +40,22 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.get("/:id/comments", (req, res) => {
+    const { id } = req.params;
+
+    commentsForResourceId(id)
+      .then((rows) => {
+        res.json(rows);
+      }
+
+      );
+
+
+
+  });
+
+
 
 
 <<<<<<< HEAD
@@ -79,10 +94,13 @@ module.exports = (db) => {
   router.post('/:id', (req, res) => {
 
     const { id } = req.params;
-    console.log("req.params", req.params);
-    const comment = req.body
+    console.log("id>>>", id);
+    contentView(id);
+    console.log("comment>>>", comment);
+    const { comment } = req.body;
+    console.log(comment)
       .then(comment => {
-        res.send(comment);
+        res.send('ind_view', comment);
       })
       .catch(err => {
         console.error(err);

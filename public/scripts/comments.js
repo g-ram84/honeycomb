@@ -13,49 +13,35 @@
 // Creates a new HTML element and returns a tweet given the user input.
 $(document).ready(function () {
 
-  {/* <header class="article-header">
-          <div class="comment-header">
-            <div class="avatar-container">
-              <img class="avatar-image" src="${escape(comment.user.avatars)}">
-              <p> &nbsp ${escape(comment.user.name)}</p>
-            </div>
-            <p class="comment-handle">${escape(comment.user.handle)}</p>
-          </div>
-        </header>
-      <footer class="article-footer">
-
-        <span>${timeSince(comment.created_at)}</span>
-        <div>
-          <i class="fas fa-flag"></i>
-          <i class="fas fa-recomment"></i>
-          <i class="fas fa-heart"></i>
-       </div>
-        </footer> */}
   const createCommentElement = function (comment) {
 
     return $(`
-    <article>
       <p id="comment-body">
-      ${escape(comment)}
+      ${escape(JSON.stringify(comment['comment']))}
       </p>
-     </article>
+
     `);
   };
-
-  const addComment = () => {
+// adds my created comment and renders said comment with the renderComments function
+  const addCommentToPage = () => {
     $("#submit-button").click(function () {
       console.log("onCLICK");
       renderComments();
     });
   };
-  addComment();
+  addCommentToPage();
 
+//
   const renderComments = function () {
     // $("#comments-container").empty();
     const $comment = createCommentElement($('#comment-text').val());
     $('#comments-container').prepend($comment);
   };
+// make an on submit event slistener
 
+// post requestresources/id/comments save the correct comment with that add Comment function respond res.send ok
+// on front end container empty rerun get comments ajax request to get comments and for loop to populate again
+//   with resource id
 
   // Form submission and error handling for the submission process.
   const errorEmpty = $("#comment-text").siblings(".error-empty");
@@ -88,28 +74,24 @@ $(document).ready(function () {
   $(error140).hide();
   $(errorEmpty).hide();
 
-
-
-
-
-
-
   //  AJAX request function that fetches from the comment database and loads the comments to the page.
   const loadComments = function () {
     console.log("whatsgoing on");
-
     $.ajax({
       method: 'GET',
-      url: '/api/resources/:id'
+      url: `/api/resources/${window.location.pathname.split("/")[window.location.pathname.split("/").length -1]}/comments`
     }).then((response) => {
-      renderComments(response);
+      console.log("response>>>>>",response)
+      for (let comment of response) {
+        const commenthtml = createCommentElement(comment)
+        $('#comments-container').prepend(commenthtml);
+      }
     }).catch((error) => {
       alert(error);
     }
     );
   };
   loadComments();
-
 
   // Protection incase of malicious code entered into input fields and converts to text
   const escape = function (str) {
@@ -176,3 +158,4 @@ $(document).ready(function () {
     .comment_button
 */
 
+// http://localhost:8080/api/resources/10/comments
