@@ -10,14 +10,10 @@
 // - timeSince - time since comment was made takes in a date eg. Now()
 
 
-  // Creates a new HTML element and returns a tweet given the user input.
-  $(document).ready(function () {
+// Creates a new HTML element and returns a tweet given the user input.
+$(document).ready(function () {
 
-
-  const createCommentElement = function (comment) {
-    return $(`
-    <article>
-        <header class="article-header">
+  {/* <header class="article-header">
           <div class="comment-header">
             <div class="avatar-container">
               <img class="avatar-image" src="${escape(comment.user.avatars)}">
@@ -26,10 +22,7 @@
             <p class="comment-handle">${escape(comment.user.handle)}</p>
           </div>
         </header>
-        <p id="comment-body">
-        ${escape(comment.content.text)}
-        </p>
-        <footer class="article-footer">
+      <footer class="article-footer">
 
         <span>${timeSince(comment.created_at)}</span>
         <div>
@@ -37,19 +30,32 @@
           <i class="fas fa-recomment"></i>
           <i class="fas fa-heart"></i>
        </div>
-        </footer>
-        </article>
+        </footer> */}
+  const createCommentElement = function (comment) {
+
+    return $(`
+    <article>
+      <p id="comment-body">
+      ${escape(comment)}
+      </p>
+     </article>
     `);
   };
 
-  // renders the created comments/ takes return value and prepends it to the comments container
-  const renderComments = function (comments) {
-    $("#comments-container").empty(); // on reload comments container empties
-    comments.forEach(element => {  //
-      const $comment = createCommentElement(element);
-      $('#comments-container').prepend($comment);
+  const addComment = () => {
+    $("#submit-button").click(function () {
+      console.log("onCLICK");
+      renderComments();
     });
   };
+  addComment();
+
+  const renderComments = function () {
+    // $("#comments-container").empty();
+    const $comment = createCommentElement($('#comment-text').val());
+    $('#comments-container').prepend($comment);
+  };
+
 
   // Form submission and error handling for the submission process.
   const errorEmpty = $("#comment-text").siblings(".error-empty");
@@ -69,17 +75,17 @@
 
 
     } else {
-      $.post("/comments",
+      $.post("/api/resources/:id", //FIX THIS AREA TOO
         $("form").serialize()
       ).then(() => {
         loadComments();
-        $(error140).hide()
+        $(error140).hide();
         $(errorEmpty).hide();
       });
     }
   });
-// The form submission error handlers are default hidden from the page.
-  $(error140).hide()
+  // The form submission error handlers are default hidden from the page.
+  $(error140).hide();
   $(errorEmpty).hide();
 
 
@@ -88,30 +94,32 @@
 
 
 
-//  AJAX request function that fetches from the comment database and loads the comments to the page.
-  // const loadComments = function () {
-  //   $.ajax({
-  //     method: 'GET',
-  //     url: '/comments'
-  //   }).then((response) => {
-  //     renderComments(response);
-  //   }).catch((error) => {
-  //     alert(error);
-  //   }
-  //   );
-  // };
-  // loadComments();
+  //  AJAX request function that fetches from the comment database and loads the comments to the page.
+  const loadComments = function () {
+    console.log("whatsgoing on");
+
+    $.ajax({
+      method: 'GET',
+      url: '/api/resources/:id'
+    }).then((response) => {
+      renderComments(response);
+    }).catch((error) => {
+      alert(error);
+    }
+    );
+  };
+  loadComments();
 
 
-// Protection incase of malicious code entered into input fields and converts to text
+  // Protection incase of malicious code entered into input fields and converts to text
   const escape = function (str) {
     let div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
-// This function I found on stack overflow. I know you're not supposed to copy/paste but
-// the function works flawlessly and could not see any way to make it my own.
+  // This function I found on stack overflow. I know you're not supposed to copy/paste but
+  // the function works flawlessly and could not see any way to make it my own.
   function timeSince(date) {
 
     var seconds = Math.floor((new Date() - date) / 1000);
