@@ -4,7 +4,7 @@
  *   these routes are mounted onto /widgets
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-const { getUser, getAllContent, contentView, addFavourite, addComment, addRating, addResource, updateUser } = require('../db/database_functions/database');
+const { getUser, commentsForResourceId, getAllContent, contentView, addFavourite, addComment, addRating, addResource, updateUser } = require('../db/database_functions/database');
 
 const express = require('express');
 const router = express.Router();
@@ -28,12 +28,11 @@ module.exports = (db) => {
 
   //Filter for food
   router.get("/", (req, res) => {
-    console.log("req.query>>>", req.query);
+    console.log("im in router get /");
+    console.log(getAllContent());
     getAllContent(req.query)
       .then(resources => {
-        console.log("resources>>>", resources);
         res.render('index', { resources });
-        // res.json({ resources });
       })
       .catch(err => {
         res
@@ -42,19 +41,51 @@ module.exports = (db) => {
       });
   });
 
+  router.get("/:id/comments", (req, res) => {
+    const { id } = req.params;
+
+    commentsForResourceId(id)
+      .then((rows) => {
+        res.json(rows);
+      }
+
+      );
+
+  });
+
+  router.post("/:id/comments", (req, res) => {
+    console.log("req.body>>>",req.body)
+    const { comments, resource_id, user_id}  = req.body
+
+    addComment(req.body)
+
+res.send("ok")
+  });
+
+
+ // post requestresources/id/comments save the correct comment with that add Comment function respond res.send ok
+  // on front end container empty rerun get comments ajax request to get comments and for loop to populate again
+  //   with resource id
+  // const addCommentToPage = () => {
+  //   $("#submit-button").click(function () {
+  //     console.log("onCLICK");
+  //     renderComments();
+  //   });
+
 
   router.get("/new_content", (req, res) => {
     res.render("new_content");// ,templateVars;
   });
 
 
-  router.post('/:id', (req, res) => {
+  router.post('/:id', (req, res) => { // currently not working
 
     const { id } = req.params;
-    console.log("req.params", req.params);
-    const comment = req.body
+    contentView(id);
+    console.log('post :id comment>>>>',comment)
+    const { comment } = req.body
       .then(comment => {
-        res.send(comment);
+        res.send('ind_view', comment);
       })
       .catch(err => {
         console.error(err);

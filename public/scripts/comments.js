@@ -13,54 +13,37 @@
 // Creates a new HTML element and returns a tweet given the user input.
 $(document).ready(function () {
 
-  {/* <header class="article-header">
-          <div class="comment-header">
-            <div class="avatar-container">
-              <img class="avatar-image" src="${escape(comment.user.avatars)}">
-              <p> &nbsp ${escape(comment.user.name)}</p>
-            </div>
-            <p class="comment-handle">${escape(comment.user.handle)}</p>
-          </div>
-        </header>
-      <footer class="article-footer">
-
-        <span>${timeSince(comment.created_at)}</span>
-        <div>
-          <i class="fas fa-flag"></i>
-          <i class="fas fa-recomment"></i>
-          <i class="fas fa-heart"></i>
-       </div>
-        </footer> */}
   const createCommentElement = function (comment) {
-
-    return $(`
-    <article>
+  return $(`
       <p id="comment-body">
-      ${escape(comment)}
+      ${escape(JSON.stringify(comment))}
       </p>
-     </article>
-    `);
+      `);
   };
 
-  const addComment = () => {
+// adds my created comment and renders said comment with the renderComments function
+  const addCommentToPage = () => {
     $("#submit-button").click(function () {
       console.log("onCLICK");
       renderComments();
     });
   };
-  addComment();
+  addCommentToPage();
 
+//
   const renderComments = function () {
-    // $("#comments-container").empty();
+    // $("#comments-container").empty(); // will be needed once rendering all comments
     const $comment = createCommentElement($('#comment-text').val());
     $('#comments-container').prepend($comment);
   };
+  // make an on submit event slistener
+
 
 
   // Form submission and error handling for the submission process.
   const errorEmpty = $("#comment-text").siblings(".error-empty");
   const error140 = $("#comment-text").siblings(".error-140");
-  $("form").submit(function (event) {
+  $("form").submit(function (event) { // was form now output
     event.preventDefault();
     const charsLength = $("#comment-text").val().length;
     console.log(charsLength);
@@ -88,28 +71,24 @@ $(document).ready(function () {
   $(error140).hide();
   $(errorEmpty).hide();
 
-
-
-
-
-
-
   //  AJAX request function that fetches from the comment database and loads the comments to the page.
   const loadComments = function () {
     console.log("whatsgoing on");
-
     $.ajax({
       method: 'GET',
-      url: '/api/resources/:id'
+      url: `/api/resources/${window.location.pathname.split("/")[window.location.pathname.split("/").length -1]}/comments`
     }).then((response) => {
-      renderComments(response);
+      console.log("response>>>>>",response)
+      for (let comment of response) {
+        const commenthtml = createCommentElement(comment)
+        $('#comments-container').prepend(commenthtml);
+      }
     }).catch((error) => {
       alert(error);
     }
     );
   };
   loadComments();
-
 
   // Protection incase of malicious code entered into input fields and converts to text
   const escape = function (str) {
@@ -151,28 +130,4 @@ $(document).ready(function () {
 });
 
 
-//copied across directly from tweeter index.html because comment-text is referenced in here
-//for our reference
-/*
- <main class="container">
-      <section class="new-tweet">
-        <h2>Compose Tweet</h2>
-        <form method="post" action="/tweets">
-          <label for="comment-text">What are you humming about?</label>
-          <div class="error-empty"><p>Your tweet is empty!</p></div>
-          <div class="error-140"><p>Your tweet needs to be less than 140 characters!</p></div>
-          <textarea name="text" id="-text"></textarea>
-          <div class="footer">
-            <button id="submit-button"type="submit">Tweet</button>
-            <output id="textAreaOutput" name="counter" class="counter" for="comment-text">140</output>
-          </div>
-        </form>
-      </section>
-      <div id="tweets-container">
-      </div>
-    </main>
-
-
-    .comment_button
-*/
 
