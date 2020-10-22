@@ -28,7 +28,6 @@ module.exports = (db) => {
 
   //Filter for food
   router.get("/", (req, res) => {
-    console.log("req.query>>>", req.query);
     getAllContent(req.query)
       .then(resources => {
         console.log("resources>>>", resources);
@@ -43,29 +42,8 @@ module.exports = (db) => {
   });
 
 
-<<<<<<< HEAD
   router.get("/new_content", (req, res) => {
     res.render("new_content");// ,templateVars;
-=======
-  router.get("/new_content", (req, res) => { //backend request
-    // const userId = req.session['userId']; //Figure out userId
-
-    // if (userDatabase[userId]) { //query here
-
-    //   //contentView(userId)
-
-    //   const templateVars = {
-    //     userId
-
-
-
-      // };
-      res.render("new_content")//templateVars);
-    // } else {
-    //   res.redirect('/login');
-    // }
-    // res.render("new_content.ejs"); //name of ejs i want to render
->>>>>>> 6e852d65bb6b041944e4648c7858eb1b8de24b25
   });
 
 
