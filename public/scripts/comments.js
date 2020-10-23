@@ -24,7 +24,7 @@ $(document).ready(function () {
   };
 // adds my created comment and renders said comment with the renderComments function
   const addCommentToPage = () => {
-    $("#submit-button").click(function () {
+    $("#submit-button").click(function (event) {
       console.log("onCLICK");
       const comment = $('#comment-text').val();
       $.ajax({

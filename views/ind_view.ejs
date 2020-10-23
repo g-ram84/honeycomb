@@ -71,7 +71,7 @@
             <div>
               <small class="text-center"><%= resource['average_rating']%>/5</small>
               <img id="star-icon" src="/documents/star_24.png">
-              <form method="POST" action="/api/resources/<%=resource['id']%>/rating" >
+              <form method="POST" action="/api/resources/<%=resource['id']%>/rating" id="rating_id" data-formID="<%=resource['id']%>">
                 <small>
                   <select name="rating" id="ratings">
                     <option value="1">1</option>
@@ -81,7 +81,7 @@
                     <option value="5">5</option>
                   </select>
                 </small>
-                <button type="submit" class="btn btn-secondary" id="submit-button">rating</button>
+                <button type="submit" class="btn btn-secondary" >rating</button>
               </form>
 
 
@@ -94,11 +94,7 @@
     <div class="col-4 scroll-view" id="comment_container" >
       <!-- <main class="container"> -->
         <section class="new-comment">
-<<<<<<< HEAD
           <h2>comments?</h2>
-=======
-          <h2>Compose Comment</h2>
->>>>>>> 6e7be372778311ee4bf9ca9672522aef70687dd3
           <form method="post" action="/api/resources/<%=resource.id%>">
             <label for="comment-text">What are you humming about?</label>
             <div class="error-empty"><p>Your comment is empty!</p></div>

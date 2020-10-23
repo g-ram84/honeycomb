@@ -80,37 +80,56 @@ module.exports = (db) => {
   })
 
 // post for adding a rating to a resource_DSM
-router.post('/:resource_id/ratings', (req, res) => {
-  const resource_Id = req.params;
+router.post('/:id/rating', (req, res) => {
+
+  // const {id: resource_id} = req.params;
+  const id = req.params.id;
+  const selectedRating = req.body.selectedRating;
+
+  addRating({rating: selectedRating, resource_id: id})
+  // const { rating } = req.body;
+  // addRating({rating, id, userid})
   //grab resource id from params
   //grab rating from body (name is "rating")
   //grab user id from params
   // db insert of resource_id, rating, user_id
   //res.send results
-
-  console.log("rating prams: ", resourceId);
+  // console.log("resource_id prams: ", resource_id);
+  // console.log("rating rating: ", rating);
 
 
 })
 
 
+//***** YOUR CREATED resource PAGE *****
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  contentView(id)// replace with addComment then use the response to append the the front end if i want to save in database
+    .then(resource => {
+      const templateVars = {
+        resource: resource,
+
+      };
+      res.render("ind_view.ejs", templateVars);
+    });
+});
 
 
 
 
 
-  router.post('/:id', (req, res) => {
+  // router.post('/:id', (req, res) => {
 
-    const { id } = req.params;
-    const comment = req.body
-      .then(comment => {
-        res.send(comment);
-      })
-      .catch(err => {
-        console.error(err);
-        res.send(err);
-      });
-  });
+  //   const { id } = req.params;
+  //   const comment = req.body
+  //     .then(comment => {
+  //       res.send(comment);
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //       res.send(err);
+  //     });
+  // });
 
   // router.post('/:id', (req, res) => {
 
@@ -126,18 +145,6 @@ router.post('/:resource_id/ratings', (req, res) => {
   //       res.send(err);
   //     });
   // });
-  //***** YOUR CREATED resource PAGE *****
-  router.get("/:id", (req, res) => {
-    const { id } = req.params;
-    contentView(id)// replace with addComment then use the response to append the the front end if i want to save in database
-      .then(resource => {
-        const templateVars = {
-          resource: resource,
-
-        };
-        res.render("ind_view.ejs", templateVars);
-      });
-  });
 
 
   return router;
