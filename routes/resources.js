@@ -4,7 +4,7 @@
  *   these routes are mounted onto /widgets
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-const { getUser, getAllContent, contentView, addFavourite, addComment, addRating, addResource, updateUser } = require('../db/database_functions/database');
+const { getUser, commentsForResourceId, getAllContent, contentView, addFavourite, addComment, addRating, addResource, updateUser } = require('../db/database_functions/database');
 
 const express = require('express');
 const router = express.Router();
@@ -28,11 +28,11 @@ module.exports = (db) => {
 
   //Filter for food
   router.get("/", (req, res) => {
+    console.log("im in router get /");
+    console.log(getAllContent());
     getAllContent(req.query)
       .then(resources => {
-        console.log("resources>>>", resources);
         res.render('index', { resources });
-        // res.json({ resources });
       })
       .catch(err => {
         res
@@ -40,6 +40,31 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.get("/:id/comments", (req, res) => {
+
+    const { id } = req.params;
+
+    commentsForResourceId(id)
+      .then((rows) => {
+        res.json(rows);
+      }
+
+      );
+  });
+  router.post("/:id/comments", (req, res) => {
+    const { id: resourceid } = req.params;
+    const userid = 1;
+    const { comment } = req.body;
+    addComment({ comment, resourceid, userid })
+      .then((createdComment) => {
+        res.send(createdComment);
+      }
+      );
+  });
+
+
+
 
 
   router.get("/new_content", (req, res) => {
@@ -87,6 +112,20 @@ router.post('/:resource_id/ratings', (req, res) => {
       });
   });
 
+  // router.post('/:id', (req, res) => {
+
+  //   const { id } = req.params;
+  //   console.log("id>>>", id);
+  //   contentView(id);
+  //   const { comment } = req.body
+  //     .then(comment => {
+  //       res.send('ind_view', comment);
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //       res.send(err);
+  //     });
+  // });
   //***** YOUR CREATED resource PAGE *****
   router.get("/:id", (req, res) => {
     const { id } = req.params;
