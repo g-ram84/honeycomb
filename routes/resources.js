@@ -78,7 +78,7 @@ module.exports = (db) => {
   router.post('/new_content', (req, res) => {
     addResource(req.body)
     .then(resource => {
-      res.redirect('/')
+      res.redirect('/api/users')
     })
   })
 
