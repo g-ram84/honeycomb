@@ -17,23 +17,27 @@ $(document).ready(function () {
 
     return $(`
       <p id="#comment-body">
-      ${escape(JSON.stringify(comment))}
+      ${escape(JSON.stringify(comment['comment']))}
       </p>
 
     `);
   };
 // adds my created comment and renders said comment with the renderComments function
-  const addCommentToPage = () => {
-    $("#submit-button").click(function () {
-      console.log("onCLICK");
+  // const addCommentToPage = () => {
+    $("#comment-form").submit(function (event) {
+      console.log("onSUBMIT");
+      event.preventDefault();
+
       const comment = $('#comment-text').val();
       $.ajax({
         method: 'POST',
         url: `/api/resources/${window.location.pathname.split("/")[window.location.pathname.split("/").length -1]}/comments`,
-        body: { comment }
+        data: {comment}
       })
       .then((result)=> {
         console.log("result>>>",result)
+        window.location.reload();
+
 
 
       })
@@ -41,8 +45,8 @@ $(document).ready(function () {
 
       // renderComments();
     });
-  };
-  addCommentToPage();
+  // };
+  // addCommentToPage();
 
 
 
@@ -59,35 +63,35 @@ $(document).ready(function () {
 //   with resource id
 
   // Form submission and error handling for the submission process.
-  const errorEmpty = $("#comment-text").siblings(".error-empty");
-  const error140 = $("#comment-text").siblings(".error-140");
-  $("form").submit(function (event) {
-    event.preventDefault();
-    const charsLength = $("#comment-text").val().length;
-    console.log(charsLength);
+  // const errorEmpty = $("#comment-text").siblings(".error-empty");
+  // const error140 = $("#comment-text").siblings(".error-140");
+  // $("form").submit(function (event) {
+  //   event.preventDefault();
+  //   const charsLength = $("#comment-text").val().length;
+  //   console.log(charsLength);
 
-    if (charsLength > 140) {
-      $(error140).slideDown(2000);
-      $(error140).slideUp(2000);
+  //   if (charsLength > 140) {
+  //     $(error140).slideDown(2000);
+  //     $(error140).slideUp(2000);
 
-    } else if (charsLength === 0) {
-      $(errorEmpty).slideDown(2000);
-      $(errorEmpty).slideUp(2000);
+  //   } else if (charsLength === 0) {
+  //     $(errorEmpty).slideDown(2000);
+  //     $(errorEmpty).slideUp(2000);
 
 
-    } else {
-      $.post("/api/resources/:id", //FIX THIS AREA TOO
-        $("form").serialize()
-      ).then(() => {
-        loadComments();
-        $(error140).hide();
-        $(errorEmpty).hide();
-      });
-    }
-  });
+  //   } else {
+  //     $.post("/api/resources/:id", //FIX THIS AREA TOO
+  //       $("form").serialize()
+  //     ).then(() => {
+  //       loadComments();
+  //       $(error140).hide();
+  //       $(errorEmpty).hide();
+  //     });
+  //   }
+  // });
   // The form submission error handlers are default hidden from the page.
-  $(error140).hide();
-  $(errorEmpty).hide();
+  // $(error140).hide();
+  // $(errorEmpty).hide();
 
   //  AJAX request function that fetches from the comment database and loads the comments to the page.
   const loadComments = function () {

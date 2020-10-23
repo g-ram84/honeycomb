@@ -138,23 +138,13 @@ const addFavourite = function (favourites) {
 }
 exports.addFavourite = addFavourite;
 
-// Add rating to resource
-const addRating = function(resource_ratings) {
-  return pool
-  .query(`
-  INSERT INTO resource_ratings (rating, resource_id, user_id)
-  VALUES ($1, $2, $3)
-  RETURNING *
-  `,[resource_ratings.rating, resource_ratings.resource_id, resource_ratings.user_id])
-  .then(res => res.rows[0]);
-}
-exports.addRating = addRating;
 
 
 
 //Add comment to resource
 
 const addComment = function (comments) {
+  console.log("comments>>>",comments)
   return pool.query(`
   INSERT INTO comments (comment, resource_id, user_id)
   VALUES ($1, $2, $3)

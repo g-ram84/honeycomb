@@ -94,18 +94,14 @@
     <div class="col-4 scroll-view" id="comment_container" >
       <!-- <main class="container"> -->
         <section class="new-comment">
-<<<<<<< HEAD
           <h2>comments?</h2>
-=======
-          <h2>Compose Comment</h2>
->>>>>>> 6e7be372778311ee4bf9ca9672522aef70687dd3
-          <form method="post" action="/api/resources/<%=resource.id%>">
+          <form id="comment-form" method="post" action="/api/resources/<%=resource.id%>/comments">
             <label for="comment-text">What are you humming about?</label>
             <div class="error-empty"><p>Your comment is empty!</p></div>
             <div class="error-140"><p>Your comment needs to be less than 140 characters!</p></div>
             <textarea name="text" id="comment-text"></textarea>
             <div class="footer">
-              <button id="submit-button" type="submit">comment</button>
+              <button id="submit-button-comments" type="submit">comment</button>
               <output id="textAreaOutput" name="counter" class="counter" for="comment-text">140</output>
             </div>
           </form>
