@@ -124,6 +124,8 @@ console.log('typeof id', typeof id)
 }
 exports.contentView = contentView;
 
+
+
 //Create a function that allows the user to add a favourite
 
 const addFavourite = function(favourites) {
@@ -135,6 +137,20 @@ const addFavourite = function(favourites) {
   .then(res => res.rows[0]);
 }
 exports.addFavourite = addFavourite;
+
+// Add rating to resource
+const addRating = function(resource_ratings) {
+  return pool
+  .query(`
+  INSERT INTO resource_ratings (rating, resource_id, user_id)
+  VALUES ($1, $2, $3)
+  RETURNING *
+  `,[resource_ratings.rating, resource_ratings.resource_id, resource_ratings.user_id])
+  .then(res => res.rows[0]);
+}
+exports.addRating = addRating;
+
+
 
 //Add comment to resource
 
@@ -148,16 +164,6 @@ const addComment = function(comments) {
 }
 exports.addComment = addComment;
 
-// Add rating to resource
-const addRating = function(resource_ratings) {
-  return pool.query(`
-  INSERT INTO resource_ratings (rating, resource_id, user_id)
-  VALUES ($1, $2, $3)
-  RETURNING *
-  `,[resource_ratings.rating, resource_ratings.resource_id, resource_ratings.user_id])
-  .then(res => res.rows[0]);
-}
-exports.addRating = addRating;
 
 // NEW CONTENT PAGE
 

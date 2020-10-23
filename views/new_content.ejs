@@ -38,11 +38,17 @@
       </div>
       <div class="col-9 ">
         <div class="justify-content-center">
-          <form method="post" action="/new_content">
+          <form method="POST" action="/new_content">
             <div class="form-group">
               <label for="url">newURL</label>
               <input type="url" class="form-control" id="new_url" name="url">
             </div>
+
+            <div class="form-group">
+              <label for="title">title</label>
+              <input type="title" class="form-control" id="new_title" name="title">
+            </div>
+
             <div class="form-group">
               <select name="catselect" class="custom-select" id="inputGroupSelect03">
                 <option selected>choose...</option>

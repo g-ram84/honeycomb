@@ -54,10 +54,29 @@ module.exports = (db) => {
     })
   })
 
+// post for adding a rating to a resource_DSM
+router.post('/:resource_id/ratings', (req, res) => {
+  const resource_Id = req.params;
+  //grab resource id from params
+  //grab rating from body (name is "rating")
+  //grab user id from params
+  // db insert of resource_id, rating, user_id
+  //res.send results
+
+  console.log("rating prams: ", resourceId);
+
+
+})
+
+
+
+
+
+
+
   router.post('/:id', (req, res) => {
 
     const { id } = req.params;
-    console.log("req.params", req.params);
     const comment = req.body
       .then(comment => {
         res.send(comment);
