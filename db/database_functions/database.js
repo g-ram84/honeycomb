@@ -124,6 +124,8 @@ const contentView = function (id) {
 };
 exports.contentView = contentView;
 
+
+
 //Create a function that allows the user to add a favourite
 
 const addFavourite = function (favourites) {
@@ -136,13 +138,13 @@ const addFavourite = function (favourites) {
 }
 exports.addFavourite = addFavourite;
 
-// comment isnt being saved correctly
 
 
 
 //Add comment to resource
 
 const addComment = function (comments) {
+  console.log("comments>>>",comments)
   return pool.query(`
   INSERT INTO comments (comment, resource_id, user_id)
   VALUES ($1, $2, $3)

@@ -53,11 +53,14 @@ module.exports = (db) => {
       );
   });
   router.post("/:id/comments", (req, res) => {
-    const { id: resourceid } = req.params;
-    const userid = 1;
-    const { comment } = req.body;
-    addComment({ comment, resourceid, userid })
-      .then((createdComment) => {
+    const { id: resource_id } = req.params;
+    const user_id = 1;
+    const comment = req.body.comment;
+    console.log("req.body>>>",req.body)
+    console.log("comment>>>>",comment)
+    const result = addComment({comment, resource_id, user_id })
+      result.then((createdComment) => {
+        console.log("created comment",createdComment)
         res.send(createdComment);
       }
       );
@@ -74,10 +77,42 @@ module.exports = (db) => {
 
   router.post('/new_content', (req, res) => {
     addResource(req.body)
-      .then(resource => {
-        res.redirect('/api/users');
-      });
-  });
+    .then(resource => {
+      res.redirect('/')
+    })
+  })
+
+// post for adding a rating to a resource_DSM
+router.post('/:resource_id/ratings', (req, res) => {
+  const resource_Id = req.params;
+  //grab resource id from params
+  //grab rating from body (name is "rating")
+  //grab user id from params
+  // db insert of resource_id, rating, user_id
+  //res.send results
+
+  console.log("rating prams: ", resourceId);
+
+
+})
+
+
+
+
+
+
+
+  // router.post('/:id', (req, res) => {
+  //   const { id } = req.params;
+  //   const comment = req.body
+  //     .then(comment => {
+  //       res.send(comment);
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //       res.send(err);
+  //     });
+  // });
 
   // router.post('/:id', (req, res) => {
 
