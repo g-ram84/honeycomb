@@ -42,6 +42,7 @@ module.exports = (db) => {
   });
 
   router.get("/:id/comments", (req, res) => {
+
     const { id } = req.params;
 
     commentsForResourceId(id)
@@ -50,10 +51,18 @@ module.exports = (db) => {
       }
 
       );
-
-
-
   });
+  router.post("/:id/comments", (req, res) => {
+    const { id: resourceid } = req.params;
+    const userid = 1;
+    const { comment } = req.body;
+    addComment({ comment, resourceid, userid })
+      .then((createdComment) => {
+        res.send(createdComment);
+      }
+      );
+  });
+
 
 
 
@@ -63,23 +72,27 @@ module.exports = (db) => {
   });
 
 
-  router.post('/:id', (req, res) => {
-
-    const { id } = req.params;
-    console.log("id>>>", id);
-    contentView(id);
-    console.log("comment>>>", comment);
-    const { comment } = req.body;
-    console.log(comment)
-      .then(comment => {
-        res.send('ind_view', comment);
-      })
-      .catch(err => {
-        console.error(err);
-        res.send(err);
+  router.post('/new_content', (req, res) => {
+    addResource(req.body)
+      .then(resource => {
+        res.redirect('/api/users');
       });
   });
 
+  // router.post('/:id', (req, res) => {
+
+  //   const { id } = req.params;
+  //   console.log("id>>>", id);
+  //   contentView(id);
+  //   const { comment } = req.body
+  //     .then(comment => {
+  //       res.send('ind_view', comment);
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //       res.send(err);
+  //     });
+  // });
   //***** YOUR CREATED resource PAGE *****
   router.get("/:id", (req, res) => {
     const { id } = req.params;

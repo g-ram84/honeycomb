@@ -4,7 +4,7 @@
 @import "layout";
 
 
-
+//index.ejs
 body {
   background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(9, 9, 9));
 }
@@ -20,6 +20,8 @@ body {
 clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 height: 315px ;
 width: 90%height;
+margin-left: 10px;
+margin-bottom: 10px;
 
 }
 
@@ -57,3 +59,28 @@ width: 90%height;
   max-height: 150px;
 
 }
+.custom-select {
+  margin: 10px;
+}
+
+.nav_bar_register {
+
+  margin-right: 40px;
+}
+
+.register_container {
+  padding: 45px;
+}
+
+.resource_containers {
+padding: 10px;
+}
+
+.new-comment{
+  color: white;
+}
+
+#comment-text {
+  width: 50%;
+}
+
