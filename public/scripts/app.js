@@ -1,7 +1,7 @@
 
 
 //client side where request are made
-//
+
 $(document).ready(function() {
   // console.log(`app loaded`)
   // This function is for Blank
@@ -11,7 +11,20 @@ $(document).ready(function() {
     window.location.href =`http://localhost:8080/api/resources?category=${cat}`
   })
 
-
+// This function is for ratings
+  console.log(`app loaded`)
+  $("#ratings").change(function(){
+    let rat = $("#ratings").val();
+    console.log(`clicked :${$("#ratings").val()}`)
+    .then((res) => {
+      const newRating = {
+        rating: rat,
+        resource_id: 1,
+        user_id: 1
+      }
+      addRating(newRating)
+    })
+  })
 
   // This function is for adding rating
 $('#rating_id').submit(function (event){
@@ -31,33 +44,12 @@ $.ajax({
 ).catch(
   console.log("fail to sent")
 );
+
 })
 
-//need and event listiner
-// This function is for getting a user_id
-// $('#my_resources').on('click',function (event) {
-//   event.preventDefault() //no refresh
-// console.log('you clicked me')
-// const user_id = 1; //math.random for 1-3?
 
-
-//   $.ajax({
-//     type: "GET",
-//     url: `/api/resources/${user_id}/myresources`,
-//     data: user_id,
-//     success: "Sent",
-//     error: "Error"
-//   }).then( (res) => {
-
-//     console.log("SENT!", res)
-//   }
-
-//   ).catch((err) => {
-
-//     console.log("fail to send",err)
-
-//   }
-//   );
-//   })
 });
+
+
+
 
