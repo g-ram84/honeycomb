@@ -53,11 +53,14 @@ module.exports = (db) => {
       );
   });
   router.post("/:id/comments", (req, res) => {
-    const { id: resourceid } = req.params;
-    const userid = 1;
-    const { comment } = req.body;
-    addComment({ comment, resourceid, userid })
-      .then((createdComment) => {
+    const { id: resource_id } = req.params;
+    const user_id = 1;
+    const comment = req.body.comment;
+    console.log("req.body>>>",req.body)
+    console.log("comment>>>>",comment)
+    const result = addComment({comment, resource_id, user_id })
+      result.then((createdComment) => {
+        console.log("created comment",createdComment)
         res.send(createdComment);
       }
       );
@@ -120,6 +123,7 @@ router.get("/:id", (req, res) => {
 
   // router.post('/:id', (req, res) => {
 
+  // router.post('/:id', (req, res) => {
   //   const { id } = req.params;
   //   const comment = req.body
   //     .then(comment => {

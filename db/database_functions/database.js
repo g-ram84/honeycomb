@@ -155,6 +155,7 @@ exports.addRating = addRating;
 //Add comment to resource
 
 const addComment = function (comments) {
+  console.log("comments>>>",comments)
   return pool.query(`
   INSERT INTO comments (comment, resource_id, user_id)
   VALUES ($1, $2, $3)

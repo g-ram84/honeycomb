@@ -54,7 +54,7 @@
 
             <div class="form-group">
               <select name="catselect" class="custom-select" id="inputGroupSelect03">
-                <option selected>choose...</option>
+                <option selected>categorySelect</option>
                 <option value="Food">food</option>
                 <option value="Hobbies">hobbies</option>
                 <option value="Health">health</option>
@@ -63,7 +63,7 @@
             </div>
             <div class="form-group">
               <select name="media_type" class="custom-select" id="inputGroupSelect04">
-                <option selected>Choose...</option>
+                <option selected>mediaType</option>
                 <option value="video">video</option>
                 <option value="image">image</option>
                 <option value="article">article</option>
@@ -71,13 +71,13 @@
             </div>
             <section class="new-tweet">
               <h2>description</h2>
-                <div class="error-empty"><p>Please enter a description.</p></div>
-                <div class="error-140"><p>Gotta be less than 140 characters!</p></div>
-                <textarea name="description" id="-text" rows="4" cols="63"></textarea>
+                <!-- <div class="error-empty"><p>Please enter a description.</p></div> -->
+                <!-- <div class="error-140"><p>Gotta be less than 140 characters!</p></div> -->
+                <textarea name="description" id="-text" rows="4" cols="63" placeholder="Tell us a bit about your honey."></textarea>
                 <div class="footer">
-                  <output id="ind_page_counter" name="counter" class="counter" for="comment-text">140</output>
+                  <!-- <output id="ind_page_counter" name="counter" class="counter" for="comment-text">140</output> -->
                 </div>
-                <button type="submit" class="btn btn-primary">submit</button>
+                <button type="submit" class="btn btn-outline-dark" id="enableOnInput">Submit</button>
               </form>
             </section>
         </div>
