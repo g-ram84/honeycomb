@@ -52,7 +52,7 @@ const getAllContent = function (options = {}) {
     resources.description as description,
     ROUND(AVG(resource_ratings.rating),0) as rating
   FROM resources
-  JOIN categories ON categories.resource_id = resources.id
+  LEFT JOIN categories ON categories.resource_id = resources.id
   JOIN users ON users.id = resources.user_id
   JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
   `;
@@ -76,14 +76,15 @@ const getAllContent = function (options = {}) {
   console.log('queryString', queryString);
   console.log('queryParams', queryParams);
   return pool.query(queryString, queryParams)
-    .then(res => {
-      console.log('res.rows', res.rows);
-      return res.rows;
-    })
-    .catch(err => {
-      console.log('err', err);
-    });
-};
+  .then(res => {
+// console.log('res.rows', res.rows)
+    return res.rows
+  })
+  .catch(err => {
+    console.log('err', err)
+    throw 'we have an error'
+      });
+}
 exports.getAllContent = getAllContent;
 
 
@@ -105,8 +106,8 @@ const contentView = function (id) {
 
   FROM resources
 
-  JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
-  JOIN comments ON comments.resource_id = resources.id
+  LEFT JOIN resource_ratings ON resource_ratings.user_id = resources.user_id
+  LEFT JOIN comments ON comments.resource_id = resources.id
   RIGHT JOIN users ON users.id = resources.user_id
 
   GROUP BY
@@ -127,13 +128,17 @@ exports.contentView = contentView;
 
 const addFavourite = function (favourites) {
   return pool.query(`
-  INSERT INTO favourites (user_id, resource_id, favourite)
-  VALUES ($1, $2, 'YES')
+  INSERT INTO favourites (user_id, resource_id)
+  VALUES ($1, $2)
   RETURNING *
-`, [favourites.user_id, favourites.resource_id, favourites.favourite])
-    .then(res => res.rows[0]);
-};
+`, [favourites.user_id, favourites.resource_id,])
+  .then(res => res.rows[0]);
+}
 exports.addFavourite = addFavourite;
+
+// comment isnt being saved correctly
+
+
 
 //Add comment to resource
 
@@ -166,9 +171,9 @@ const addResource = function (resources) {
   INSERT INTO resources (url, user_id, title, description, date_created, media_type)
   VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *
-  `, [resources.url, resources.user_id, resources.title, resources.description, resources.date_created, resources.media_type])
-    .then(res => res.rows[0]);
-};
+  `, [resources.url, resources.user_id || 1, resources.title, resources.description, resources.date_created, resources.media_type])
+  .then(res => res.rows[0]);
+}
 exports.addResource = addResource;
 
 // EDIT USER PAGE
@@ -219,5 +224,15 @@ const commentsForResourceId = function (id) {
     , [id]
   ).then(res => res.rows);
 };
+  exports.commentsForResourceId = commentsForResourceId;
 
-exports.commentsForResourceId = commentsForResourceId;
+const myResources = function(resources) {
+  return pool.query(`
+  SELECT resources.*, favourites.*
+  FROM resources
+  JOIN favourites ON resources.id = favourites.resource_id
+  WHERE resources.user_id = $1;
+  `, resources)
+  .then(res => res.rows);
+};
+exports.myResources = myResources;

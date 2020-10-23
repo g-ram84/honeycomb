@@ -16,8 +16,8 @@ $(document).ready(function () {
   const createCommentElement = function (comment) {
 
     return $(`
-      <p id="comment-body">
-      ${escape(JSON.stringify(comment['comment']))}
+      <p id="#comment-body">
+      ${escape(JSON.stringify(comment))}
       </p>
 
     `);
@@ -26,12 +26,27 @@ $(document).ready(function () {
   const addCommentToPage = () => {
     $("#submit-button").click(function () {
       console.log("onCLICK");
-      renderComments();
+      const comment = $('#comment-text').val();
+      $.ajax({
+        method: 'POST',
+        url: `/api/resources/${window.location.pathname.split("/")[window.location.pathname.split("/").length -1]}/comments`,
+        body: { comment }
+      })
+      .then((result)=> {
+        console.log("result>>>",result)
+
+
+      })
+//now -- result object once saved properly turn that into comment block
+
+      // renderComments();
     });
   };
   addCommentToPage();
 
-//
+
+
+//acepts a comment argument and add to comments container instead of getting comment text
   const renderComments = function () {
     // $("#comments-container").empty();
     const $comment = createCommentElement($('#comment-text').val());
@@ -76,7 +91,6 @@ $(document).ready(function () {
 
   //  AJAX request function that fetches from the comment database and loads the comments to the page.
   const loadComments = function () {
-    console.log("whatsgoing on");
     $.ajax({
       method: 'GET',
       url: `/api/resources/${window.location.pathname.split("/")[window.location.pathname.split("/").length -1]}/comments`
