@@ -1,159 +1,97 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-  <head   <title    <!-- Required meta     <meta chars    <meta nam   <!-- <lin   <link re   <link rel=   <!-- <li ''
+  <head>
+    <title>Home Page</title>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-''
+    <!-- <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> ARE THESE NEEDED WITH BOOTSTRAP-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
+    <link rel="stylesheet" href="/styles/ind_view.css" type="text/css" />
 
 
-orts = (db) => {
 
-  // rute.ge("/", (req, re) => {
-  //   let query`SELECT * FROM resources`;
-  //   console.logquery);
-  //   .query(query)
-  //     .then(data => {
-  //       const resources = data.rows;
-  //       res.json({ resources });
-  //     }
-  //     .catch(err {
-  //      res
-  //         .status(500)
-  //         .json( error: err.message });
-  //     });
-  // });
+
+
 
 
 <!-- link to main.css -->
-    console.log("im in router get /");
 <!-- BOOTSTRAP used separate scripts requires jQuery slim-->
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-    <script ype="textjavascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script src="ht'ps://'dn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-    <script tpe=text/javascript" src="/scripts/app.js"></script>
-    <script
-           type="text/
-          javascript" src="/scripts/comments.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/comments.js"></script>
     <script type="text/javascript" src="/scripts/charcounter.js"></script>
     <script type="text/javascript" src="/db/database_functions/database.js"></script>
   </head>
 
 
   <body>
-
-    <div class="container-flu
-      id">
-        <div class="row">
-
-
-         <div class="col-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2">
           <nav class="nav sticky-top">
+            <%- include('../partials/_loggedin_nav') %>
           </nav>
         </div>
 
         <div class="col-6 ">
-          <div class="sticky-tp">
-          <div class="row justfy-contet-center">
-            <h1 class="h1"><%= esource.title%></h1>
-            <div class="card mb-3">
-              <iframe id="video_thumbnil"
-                  class="embed-responsive-item"
-
-                 class="card-img-top"
-
-
-
-
-           src= "<%= resource['url']%>"
+          <div class="sticky-top">
+          <div class="row justify-content-center">
+            <h1 class="h1"><%= resource.title%></h1>
+          <div class="card mb-3">
+            <iframe id="video_thumbnail"
+                class="embed-responsive-item"
+                class="card-img-top"
+                src= "<%= resource['url']%>"
               >
             </iframe>
           </div>
-
-     </div>
-
-          <div'class="card-'ody">
-            <!-- <h5 clas
-    s="cad-title">ard title</h5> -->
-            <!-- <p'class="car'-ext">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-
-         <div class="card-footer d-flex justify-content-around">
-            <div>
-            <img onclick="addFavourite()" id="like-icon" src="/documents/like.svg">
-            'small class'"text-center">10<
-/small>
-  // const {id: resource_id} = req.params;
           </div>
-          <p class="card-text"><small class="text-muted">Posted By: <%= resource.user_name%></small></p>
+
+          <div class="card-body">
+            <!-- <h5 class="card-title">Card title</h5> -->
+            <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+
+          <div class="card-footer d-flex justify-content-around">
             <div>
-            <mall class="text-center"><%= resource['})
-  // consta{ rating v = req.bodyrage_rating']%>/5</small>
-  // addRating({rating, id, userid           <img id="star-icon" src="/documents/star_24.png">
-  //grab resource id from params              <form method="POST" action="/api/resources/<%=resource['id']%>/rating" id="rating_id" data-formID="<%=resource['id']%>">
-    grab rat  g from bo y (name is "rat ng")
-  //grab user  < from parmms
-  // dbl>nsrt resource_id,rting, user_id
-  //res.send results
- // conole.log("resource_id rams: ", rsoure_d);
-  // onsole.log("ratingating: ", rating);
-
-
-})
-
-
-//***** YOUR CREATED r PAGE *****
-                <select name="rating" id="ratings">
-                  <option value="1">1</option>
-                 // replace with addComment then use the response to append the the front end if i want to save in database
-     <opton value=2">2</option>
+              <img onclick="addFavourite()" id="like-icon" src="/documents/like.svg">
+              <small class="text-center">10</small>
+            </div>
+            <p class="card-text"><small class="text-muted">Posted By: <%= resource.user_name%></small></p>
+            <div>
+              <small class="text-center"><%= resource['average_rating']%>/5</small>
+              <img id="star-icon" src="/documents/star_24.png">
+              <form method="POST" action="/api/resources/<%=resource['id']%>/rating" id="rating_id" data-formID="<%=resource['id']%>">
+                <small>
+                  <select name="rating" id="ratings">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
                     <option value="3">3</option>
-                    <option
- value="4">4</option>
+                    <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
                 </small>
+              
+               <button type="submit" class="btn btn-secondary" >rating</button>
+              </form>
 
 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-
-
-           <button type="submit" class="btn btn-secondary" >rating</button>
-     rout r.pos ('/:id', (req,   <) => {
-
-  // r/fter.post('/:id', (req, oes) => {
-  //   ronst { id } = rmq.params;
-  //   con>tcomnt =req.od
-  //    .then(commet => {
-  //      rs.sen(comment);
-//     })
-  //     .ctch(err=> {
-  //       conol.error(err);
- //       re.snd(er);
-//     });
-  // });
-
-  // pos''
-
-// { } ;
-  //   consolelog(">>>", id)
-  //   cont ntVi/wiid);
-  //   con>t { commnt } = eq.boy
-  //     cmmnt
-  //       res.send('ind_view',   mme <);
-  //     })
-  //    /.cch(r>
-  //       condile.e>(rr);
-  //     </div>s(
-  //
-  //   <
-div class="col-4 scroll-view" id="comment_container" >
+    <div class="col-4 scroll-view" id="comment_container" >
       <!-- <main class="container"> -->
         <section class="new-comment">
-
-        <h2>comments?</h2>
+          <h2>comments?</h2>
           <form id="comment-form" method="post" action="/api/resources/<%=resource.id%>/comments">
             <label for="comment-text">What are you humming about?</label>
             <div class="error-empty"><p>Your comment is empty!</p></div>
@@ -173,6 +111,13 @@ div class="col-4 scroll-view" id="comment_container" >
   </body>
 </html>
 </html>
+
+
+
+
+
+
+
 
 
 
