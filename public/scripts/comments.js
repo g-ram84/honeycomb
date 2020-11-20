@@ -63,35 +63,35 @@ $(document).ready(function () {
 //   with resource id
 
   // Form submission and error handling for the submission process.
-  // const errorEmpty = $("#comment-text").siblings(".error-empty");
-  // const error140 = $("#comment-text").siblings(".error-140");
-  // $("form").submit(function (event) {
-  //   event.preventDefault();
-  //   const charsLength = $("#comment-text").val().length;
-  //   console.log(charsLength);
+  const errorEmpty = $("#comment-text").siblings(".error-empty");
+  const error140 = $("#comment-text").siblings(".error-140");
+  $("form").submit(function (event) {
+    event.preventDefault();
+    const charsLength = $("#comment-text").val().length;
+    console.log(charsLength);
 
-  //   if (charsLength > 140) {
-  //     $(error140).slideDown(2000);
-  //     $(error140).slideUp(2000);
+    if (charsLength > 140) {
+      $(error140).slideDown(2000);
+      $(error140).slideUp(2000);
 
-  //   } else if (charsLength === 0) {
-  //     $(errorEmpty).slideDown(2000);
-  //     $(errorEmpty).slideUp(2000);
+    } else if (charsLength === 0) {
+      $(errorEmpty).slideDown(2000);
+      $(errorEmpty).slideUp(2000);
 
 
-  //   } else {
-  //     $.post("/api/resources/:id", //FIX THIS AREA TOO
-  //       $("form").serialize()
-  //     ).then(() => {
-  //       loadComments();
-  //       $(error140).hide();
-  //       $(errorEmpty).hide();
-  //     });
-  //   }
-  // });
+    } else {
+      $.post("/api/resources/:id", //FIX THIS AREA TOO
+        $("form").serialize()
+      ).then(() => {
+        loadComments();
+        $(error140).hide();
+        $(errorEmpty).hide();
+      });
+    }
+  });
   // The form submission error handlers are default hidden from the page.
-  // $(error140).hide();
-  // $(errorEmpty).hide();
+  $(error140).hide();
+  $(errorEmpty).hide();
 
   //  AJAX request function that fetches from the comment database and loads the comments to the page.
   const loadComments = function () {
